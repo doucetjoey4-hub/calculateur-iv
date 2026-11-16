@@ -1,0 +1,54 @@
+/* Relief commun aux surfaces du portail. */
+@media (forced-colors: none) {
+  :root {
+    --portal-edge-light: #ffffff85;
+    --portal-relief-shadow: #14192524;
+  }
+  :root[data-theme=dark] {
+    --portal-edge-light: #ffffff26;
+    --portal-relief-shadow: #0006;
+  }
+  :root[data-theme] #app-shell :is(.panel,.help-strip,.metric),
+  :root[data-theme] dialog:not(.new-order-editor) :is(.unified-form-section,.tracked-form-section) {
+    box-shadow: inset 0 1px 0 var(--portal-edge-light), 0 4px 12px var(--portal-relief-shadow);
+  }
+  :root[data-theme] #app-shell :is(.primary,.secondary,.settings-link,.theme-toggle,.back-to-top,.date-field-button):not(:focus-visible,:disabled,.badge,[data-deadline]),
+  :root[data-theme] #app-shell .brand-logo,
+  :root[data-theme] #resetConfirm :is(.secondary,.delete-primary):not(:disabled),
+  :root[data-theme] dialog:not(.new-order-editor) :is(.primary,.secondary,.icon-button):not(:focus-visible,:disabled) {
+    box-shadow: inset 0 1px 0 var(--portal-edge-light), inset 0 -2px 0 var(--portal-relief-shadow), 0 3px 7px var(--portal-relief-shadow);
+  }
+}
+
+/* Retour tactile commun aux boutons et aux liens du menu. */
+@media (forced-colors: none) {
+  :is(button, input[type=button], input[type=submit], input[type=reset], [role=button], a.settings-link, .sidebar nav a, a.primary, a.secondary):active:not(:disabled,[aria-disabled=true],.calculator-switch > .order-page) {
+    /* Le relief d’appui doit primer sur les ombres propres à chaque thème. */
+    box-shadow: inset 0 2px 5px var(--portal-relief-shadow) !important;
+  }
+}
+@media (prefers-reduced-motion: no-preference) and (forced-colors: none) {
+  :is(button, input[type=button], input[type=submit], input[type=reset], [role=button], a.settings-link, .sidebar nav a, a.primary, a.secondary):active:not(:disabled,[aria-disabled=true],.calculator-switch > .order-page) {
+    translate: 0 1px;
+  }
+}
+
+/* Relief des contrôles propres au calculateur. */
+@media (forced-colors: none) {
+  #app-shell .calculator-switch,
+  #app-shell :is(.amount input,.date-field-control,input[name=employee],input[name=rx]):not(:focus-within) {
+    box-shadow: inset 0 2px 5px var(--portal-relief-shadow), inset 0 -1px 0 var(--portal-edge-light);
+  }
+  :root[data-theme] #app-shell .calculator-switch.sliding-tabs::before {
+    box-shadow: inset 0 1px 0 var(--portal-edge-light), inset 0 -2px 0 var(--slide-ink), 0 3px 7px var(--portal-relief-shadow);
+  }
+  #app-shell :is(.product-options fieldset,.computed,.calculation,.document-tile), #pdfDialog {
+    box-shadow: inset 0 1px 0 var(--portal-edge-light), 0 4px 12px var(--portal-relief-shadow);
+  }
+  #app-shell .ordered-check input:not(:focus-visible,:disabled) {
+    box-shadow: inset 0 1px 0 var(--portal-edge-light), 0 2px 4px var(--portal-relief-shadow);
+  }
+  #app-shell .ordered-check input:active:not(:disabled) {
+    box-shadow: inset 0 2px 5px var(--portal-relief-shadow);
+  }
+}

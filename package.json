@@ -1,0 +1,1 @@
+{"name":"calculateur-iv-pharmacie","private":true,"type":"module","scripts":{"test":"node --test tests.mjs pdf-tests.mjs"}}

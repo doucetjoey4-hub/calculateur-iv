@@ -1,0 +1,251 @@
+/* Composition et états propres à la facturation IV. */
+.mobile-menu-shade, #mobileMenu { display: none; }
+.workspace > .topbar { position: sticky; top: 0; z-index: 20; }
+#app-shell .sidebar { overflow-y: auto; }
+#app-shell .sidebar .side-bottom > div { position: static; width: 100%; }
+#app-shell.sidebar-collapsed .sidebar .side-bottom { display: none; }
+#main .order-start { margin-bottom: 24px; }
+#orderSelection { display: none; }
+
+#main .calculator-switch {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: min(100%, 520px);
+  max-width: 100%;
+  margin: 0;
+  overflow: visible;
+}
+#main #commande .calculator-switch {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-inline: auto;
+}
+#main .calculator-switch .order-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  min-width: 0;
+  min-height: 37px;
+  padding-block: 6px;
+  border-radius: 9px;
+  text-align: center;
+  white-space: normal;
+}
+.calculator-switch:not(:has(.active))::before { opacity: 0; }
+#insurance-heading { display: block; margin-bottom: 8px; font-size: 11px; font-weight: 600; }
+
+.layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(270px, 310px); gap: 22px; align-items: start; }
+.sections { display: grid; gap: 22px; min-width: 0; }
+.sections > .panel, #commande { scroll-margin-top: calc(var(--topbar-height) + 16px); }
+.calculator-panel-body { min-width: 0; padding: 0 24px 24px; }
+#form .panel > .panel-head { border-radius: inherit; border-end-start-radius: 0; border-end-end-radius: 0; }
+.panel-heading-icon svg { width: 22px; height: 22px; }
+.fields.form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.calculator-panel-body label:not(.ordered-check) { display: grid; align-content: start; gap: 8px; font-size: 11px; font-weight: 600; }
+.calculator-panel-body input:not([type=checkbox]):not([type=hidden]) { min-height: var(--request-control-height); height: var(--request-control-height); border-radius: 9px; }
+.calculator-panel-body input[aria-invalid=true] { border-color: var(--red); }
+.field-error { color: var(--red); font-size: 11px; }
+.optional, .hint, .computed small, .calculation small, .step-title .tag { color: var(--muted); }
+.optional { font-weight: 400; }
+.hint { font-size: 12px; line-height: 1.6; margin-top: 12px; }
+.amount { position: relative; min-width: 0; }
+.amount input { padding-right: 32px; }
+.amount > span { position: absolute; inset-inline-end: 13px; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; }
+.calculator-panel-body fieldset { min-width: 0; margin: 0; padding: 0; border: 0; }
+.calculator-panel-body fieldset:disabled { opacity: .55; }
+.step-title { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; margin: 0 0 12px; }
+.step-title h3 { margin: 0; font-size: 14px; }
+.step-title .tag { font-size: 10px; font-weight: 600; }
+
+.computed, .calculation, .document-tile, .summary-result, .summary-note {
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--raised, var(--bg));
+}
+.computed { display: grid; align-content: center; gap: 4px; }
+.computed strong { font-size: 18px; }
+.calculation { display: flex; align-items: center; justify-content: space-between; gap: 8px 16px; flex-wrap: wrap; margin: 14px 0 20px; background: var(--jc-pale); }
+.calculation span { font-weight: 600; }
+.calculation small { display: block; margin-top: 4px; font-weight: 400; }
+.calculation strong { font-size: 22px; margin-left: auto; white-space: nowrap; }
+.calculation.soft { background: var(--raised, var(--bg)); margin-bottom: 0; }
+.warning, .info { padding: 12px; border: 1px solid var(--border); border-radius: 9px; font-size: 12px; }
+.warning { color: var(--red); }
+.info { background: var(--jc-pale); }
+
+.check.ordered-check { font-size: 12px; padding-block: 5px; }
+#checks .check { border-bottom: 1px solid var(--border); }
+.product-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.product-options fieldset { padding: 12px; border: 1px solid var(--border); border-radius: 9px; }
+.product-options legend { font-weight: 600; }
+.product + .product { border-top: 1px solid var(--border); margin-top: 16px; padding-top: 8px; }
+.product > .check { margin-bottom: 10px; }
+
+.document-tile { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.document-tile small, .dialog-head small { display: block; color: var(--muted); margin-top: 4px; }
+.pdf-icon { color: var(--jc-red); font-weight: 700; }
+.summary {
+  position: sticky;
+  top: calc(var(--topbar-height) + 16px);
+  max-height: calc(100dvh - var(--topbar-height) - 32px);
+  overflow: auto;
+}
+.summary-title, .summary-row { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.summary h2 { font-size: 17px; }
+.summary-row { margin: 10px 0; font-size: 12px; }
+.summary-row span, .summary-group > small, .live { color: var(--muted); }
+.summary-row strong { max-width: 60%; text-align: right; overflow-wrap: anywhere; }
+.summary-group { border-top: 1px solid var(--border); padding-top: 10px; margin-top: 12px; }
+.summary-result .summary-row { margin: 0; }
+.summary .full { display: flex; justify-content: center; width: 100%; margin-top: 8px; text-decoration: none; }
+
+#pdfDialog { width: min(1000px, calc(100vw - 24px)); max-height: 94dvh; padding: 0; }
+#pdfDialog .dialog-head { position: sticky; top: 0; z-index: 1; margin: 0; padding: 16px 20px; background: var(--paper); border-bottom: 1px solid var(--border); }
+#pdfPages { padding: 16px; }
+#pdfPages canvas { display: block; width: 100%; height: auto; margin-bottom: 16px; }
+#toast { position: fixed; inset: auto 16px 20px; width: fit-content; max-width: calc(100% - 32px); margin-inline: auto; background: var(--ink); color: var(--paper); padding: 12px 16px; border-radius: 9px; z-index: 100; }
+#toast:not(.visible), [hidden] { display: none !important; }
+
+@media (max-width: 1050px) {
+  .layout { grid-template-columns: minmax(0, 1fr); }
+  .summary { position: static; max-height: none; }
+}
+@media (max-width: 760px) {
+  .mobile-menu-shade { display: block; }
+  #app-shell .sidebar { overflow: visible; }
+  #app-shell .sidebar .side-bottom { display: none; }
+  #app-shell .sidebar nav.has-sliding-outline { position: fixed; }
+  #main .intro { flex-wrap: wrap; gap: 12px; }
+  #main .calculator-switch .order-page { min-height: 42px; }
+  #form .panel > .panel-head { padding-inline: 16px; }
+  .calculator-panel-body { padding: 0 16px 16px; }
+}
+@media (max-width: 540px) {
+  .fields.form-grid, .product-options { grid-template-columns: minmax(0, 1fr); }
+  #main #commande .calculator-switch { gap: 3px; }
+  #main #commande .order-page { padding-inline: clamp(4px, calc((100vw - 320px) / 12), 10px); }
+}
+
+/* Adaptation des groupes et champs de new-order.css aux sections IV. */
+#form {
+  --request-accent: var(--create-edge, var(--jc-blue));
+  --request-surface: var(--surface, var(--paper));
+  --request-line: color-mix(in srgb, var(--request-accent) 48%, var(--border));
+  --request-tint: color-mix(in srgb, var(--request-accent) 9%, var(--request-surface));
+  --request-control-height: 44px;
+}
+#form :is(.amount > input,input[name=employee],input[name=rx],.date-field-control):not([aria-invalid=true]) {
+  border-color: var(--request-line);
+}
+#form .date-field-control { min-height: var(--request-control-height); height: var(--request-control-height); }
+#form .date-field-control .date-manual-input { min-height: 0; height: 100%; }
+#form .date-field-control > .date-field-button {
+  display: grid;
+  place-items: center;
+  place-content: center;
+  padding: 0;
+}
+#form .date-field-button .date-field-icon {
+  display: grid;
+  place-items: center;
+  margin: 0;
+  transform: none;
+}
+#form .product-options fieldset {
+  border-color: var(--request-line);
+  background: var(--request-tint);
+  border-radius: 14px;
+}
+#form .product-options legend { padding-inline: 6px; }
+#form .computed { background: var(--request-tint); }
+#pdfDialog .dialog-head > div {
+  position: relative;
+  padding-inline-start: 16px;
+}
+#pdfDialog .dialog-head > div::before {
+  content: '';
+  position: absolute;
+  inset-inline-start: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 25px;
+  border-radius: 5px;
+  background: var(--jc-red);
+}
+@media (max-width: 760px) {
+  #form { --request-control-height: 42px; }
+}
+
+.fee-pair {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: inherit;
+}
+.assisted-field { min-width: 0; }
+.assisted-field-heading { display: flex; align-items: center; gap: 6px; min-height: 30px; }
+.assisted-field-heading + .amount { margin-top: 4px; }
+.field-help-button {
+  display: grid;
+  place-items: center;
+  flex: 0 0 30px;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--muted);
+  font-size: 14px;
+}
+.field-help-button:focus-visible { outline: 2px solid var(--jc-blue); outline-offset: 2px; }
+.field-help-button:hover, .field-help-button[aria-expanded=true] { background: var(--jc-pale); color: var(--jc-blue); }
+.field-help-content {
+  position: fixed;
+  inset: auto;
+  margin: 0;
+  width: min(440px, calc(100vw - 32px));
+  max-height: calc(100dvh - 32px);
+  overflow: auto;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: 0 6px 20px var(--portal-relief-shadow);
+}
+.field-help-content:popover-open {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 10px;
+}
+.field-help-content p { grid-area: 1 / 1; margin: 0; font-size: 12px; line-height: 1.5; }
+.field-help-actions { grid-area: 1 / 2; display: flex; gap: 4px; }
+.field-help-image { grid-column: 1 / -1; min-width: 0; overflow: auto; }
+.field-help-content img { display: block; width: 100%; height: auto; border-radius: 6px; }
+
+#fieldHelpViewer {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right))
+    max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+  border: 0;
+  border-radius: 0;
+  background: var(--bg);
+  color: var(--ink);
+}
+#fieldHelpViewer[open] {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 8px;
+}
+#fieldHelpViewer > button { justify-self: end; }
+#fieldHelpViewer > img { width: 100%; height: 100%; min-height: 0; object-fit: contain; }
