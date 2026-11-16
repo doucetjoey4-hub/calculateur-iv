@@ -1,0 +1,374 @@
+/* Icônes de navigation bicolores, sans incidence sur les couleurs des statuts. */
+:root{--nav-detail:#9ddcff;--nav-wash:#9ddcff}
+:root[data-profile-palette="neon-pink"]{--nav-detail:#ffb5df;--nav-wash:#ff75c4}
+:root[data-profile-palette="charcoal-red"]{--nav-detail:#ff9b9b;--nav-wash:#ff3030}
+:root[data-profile-palette="sky-blue"]{--nav-detail:#b3efff;--nav-wash:#43ceff}
+:root[data-profile-palette="lilac"]{--nav-detail:#ead0ff;--nav-wash:#c79aef}
+:root[data-profile-palette="forest-black"]{--nav-detail:#b0efc1;--nav-wash:#69cb8b}
+#app-shell .sidebar .nav-icon{background:transparent}
+#app-shell .sidebar .nav-icon svg{width:25px;height:25px;overflow:visible}
+#app-shell .sidebar .nav-icon .icon-wash,.settings-link .icon-wash{fill:currentColor;fill-opacity:.18;stroke:none}
+#app-shell .sidebar .nav-icon .icon-detail{stroke:var(--nav-detail)}
+#app-shell .sidebar .nav-icon .icon-disc{fill:var(--profile-pink-deep,var(--profile-red-deep,var(--profile-blue-deep,var(--profile-lilac-deep,var(--profile-forest-deep,#123e6c)))));stroke:var(--nav-detail)}
+#app-shell .settings-link .icon-detail{stroke:var(--jc-blue)}
+
+/* Les mêmes deux tons dans les en-têtes, adaptés à une surface claire ou sombre. */
+#app-shell .panel-heading-icon svg{display:block;width:24px;height:24px;overflow:visible}
+#app-shell .panel-heading-icon .icon-wash{fill:currentColor;fill-opacity:.18;stroke:none}
+#app-shell .panel-heading-icon .icon-detail{stroke:var(--jc-blue)}
+#app-shell .panel-heading-icon .icon-disc{fill:var(--paper);stroke:var(--jc-blue)}
+
+/* Survol doux : légère élévation, zoom et éclaircissement du dessin bicolore. */
+#app-shell .sidebar .nav-icon svg{transform-origin:50% 60%;transition:transform .36s cubic-bezier(.22,.8,.25,1)}
+#app-shell .sidebar .nav-icon .icon-wash{transition:fill-opacity .3s ease}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){
+ #app-shell .sidebar nav a:hover .nav-icon svg{transform:translateY(-2px) scale(1.1)}
+ #app-shell .sidebar nav a:hover .nav-icon .icon-wash{fill-opacity:.32}
+}
+@media(prefers-reduced-motion:no-preference){
+ #app-shell .sidebar nav a:focus-visible .nav-icon svg{transform:translateY(-2px) scale(1.1)}
+ #app-shell .sidebar nav a:focus-visible .nav-icon .icon-wash{fill-opacity:.32}
+}
+@media(prefers-reduced-motion:reduce){#app-shell .sidebar .nav-icon svg,#app-shell .sidebar .nav-icon .icon-wash{transition:none;transform:none}}
+
+/* Alerte de rupture : badge plein contrasté, teinte du profil conservée. */
+#app-shell .sidebar .nav-icon .icon-alert-disc{fill:var(--nav-detail);stroke:var(--profile-pink-deep,var(--profile-red-deep,var(--profile-blue-deep,var(--profile-lilac-deep,var(--profile-forest-deep,#123e6c)))))}
+#app-shell .sidebar .nav-icon .icon-alert-mark{stroke:#101820}
+#app-shell .sidebar .nav-icon .icon-alert-dot{fill:#101820}
+#app-shell .panel-heading-icon .icon-alert-disc{fill:var(--jc-blue);stroke:var(--paper)}
+#app-shell .panel-heading-icon .icon-alert-mark{stroke:var(--paper)}
+#app-shell .panel-heading-icon .icon-alert-dot{fill:var(--paper)}
+
+/* Triangle bicolore : silhouette arrondie et alerte lisible à petite taille. */
+#app-shell .sidebar .nav-icon .icon-triangle-dot{fill:var(--nav-detail)}
+#app-shell .panel-heading-icon .icon-triangle-dot{fill:var(--jc-blue)}
+
+/* Titres : mêmes dessins sans fond carré ni encadré, comme dans le menu. */
+:root[data-theme] #app-shell #main .panel-heading-icon{background:var(--jc-pale);border:1px solid var(--border);border-radius:12px;color:var(--jc-blue)}
+:root[data-theme] #app-shell #main .panel-heading-icon svg{width:25px;height:25px}
+
+/* Détails identiques au menu, carré des titres conservé. */
+#app-shell #main .panel-heading-icon .icon-detail{stroke:var(--nav-detail)}
+#app-shell #main .panel-heading-icon .icon-triangle-dot{fill:var(--nav-detail)}
+#app-shell #main .panel-heading-icon .icon-disc{fill:var(--profile-pink-deep,var(--profile-red-deep,var(--profile-blue-deep,var(--profile-lilac-deep,var(--profile-forest-deep,#123e6c)))));stroke:var(--nav-detail)}
+
+/* Une palette commune aux icônes du menu et des titres, sans héritage différent. */
+:root{--nav-icon-ink:#f3f7ff;--nav-icon-surface:#123e6c}
+:root[data-profile-palette="neon-pink"]{--nav-icon-surface:var(--profile-pink-deep)}
+:root[data-profile-palette="charcoal-red"]{--nav-icon-surface:var(--profile-red-deep)}
+:root[data-profile-palette="sky-blue"]{--nav-icon-surface:var(--profile-blue-deep)}
+:root[data-profile-palette="lilac"]{--nav-icon-surface:var(--profile-lilac-deep)}
+:root[data-profile-palette="forest-black"]{--nav-icon-surface:var(--profile-forest-deep)}
+:root[data-theme] #app-shell .sidebar .nav-icon,
+:root[data-theme] #app-shell #main .panel-heading-icon{color:var(--nav-icon-ink)}
+:root[data-theme] #app-shell #main .panel-heading-icon{background:var(--jc-pale);border-color:var(--border)}
+
+/* Titres : fond teinté d’origine, lignes blanches. */
+:root[data-theme] #app-shell #main .panel-heading-icon{color:#fff}
+
+/* Titres clairs : traits contrastés, fond teinté et palette du profil conservés. */
+:root[data-theme=light] #app-shell #main .panel-heading-icon{color:var(--jc-blue)}
+:root[data-theme=light] #app-shell #main .panel-heading-icon .icon-detail{stroke:var(--jc-blue)}
+:root[data-theme=light] #app-shell #main .panel-heading-icon .icon-triangle-dot{fill:var(--jc-blue)}
+:root[data-theme=light] #app-shell #main .panel-heading-icon .icon-disc{fill:var(--paper);stroke:var(--jc-blue)}
+
+/* Un geste par fonction : animations courtes, sans répétition automatique. */
+@media(hover:hover) and (prefers-reduced-motion:no-preference){
+ #app-shell .sidebar nav a[data-view=atp]:hover .icon-detail{transform-box:fill-box;transform-origin:center;animation:nav-add .55s cubic-bezier(.22,.8,.25,1)}
+ #app-shell .sidebar nav a[data-view=orders]:hover .icon-detail{stroke-dasharray:12;animation:nav-check .6s ease both}
+ #app-shell .sidebar nav a[data-view=shortages]:hover .nav-icon svg{animation:nav-alert .6s ease}
+ #app-shell .sidebar nav a[data-view=tracked]:hover .icon-detail{transform-origin:17px 17px;animation:nav-clock .65s cubic-bezier(.22,.8,.25,1)}
+ #app-shell .sidebar nav a[data-view=feedback]:hover .icon-detail{transform-box:fill-box;transform-origin:center;animation:nav-idea .65s ease}
+ #app-shell .settings-link:hover svg{transform:rotate(30deg)}
+}
+#app-shell .settings-link svg{transition:transform .4s cubic-bezier(.22,.8,.25,1);transform-origin:center}
+@keyframes nav-add{0%{transform:scale(.75);opacity:.5}55%{transform:scale(1.2);opacity:1}100%{transform:scale(1);opacity:1}}
+@keyframes nav-check{0%{stroke-dashoffset:12;opacity:.4}75%,100%{stroke-dashoffset:0;opacity:1}}
+@keyframes nav-alert{0%{transform:translateY(-2px) scale(1.1)}25%{transform:translateY(-2px) scale(1.1) rotate(-5deg)}50%{transform:translateY(-2px) scale(1.1) rotate(4deg)}75%{transform:translateY(-2px) scale(1.1) rotate(-2deg)}100%{transform:translateY(-2px) scale(1.1)}}
+@keyframes nav-clock{0%{transform:rotate(-60deg);opacity:.6}100%{transform:rotate(0);opacity:1}}
+@keyframes nav-idea{0%{opacity:.45;transform:scale(.9)}50%{opacity:1;transform:scale(1.13)}100%{opacity:1;transform:scale(1)}}
+@media(prefers-reduced-motion:reduce){#app-shell .sidebar .nav-icon svg *,#app-shell .settings-link svg{animation:none!important;transition:none;transform:none!important}}
+
+/* Gestes plus visibles, une seule fois à chaque survol. */
+@media(hover:hover) and (prefers-reduced-motion:no-preference){
+ #app-shell .sidebar nav a:hover .nav-icon svg{transform:translateY(-3px) scale(1.18)}
+ #app-shell .sidebar nav a[data-view=atp]:hover .icon-detail{animation:nav-add-bold .8s cubic-bezier(.22,.8,.25,1)}
+ #app-shell .sidebar nav a[data-view=orders]:hover .icon-detail{animation:nav-check .85s ease both}
+ #app-shell .sidebar nav a[data-view=shortages]:hover .nav-icon svg{animation:nav-alert-bold .85s ease}
+ #app-shell .sidebar nav a[data-view=tracked]:hover .icon-detail{animation:nav-clock-bold .9s cubic-bezier(.22,.8,.25,1)}
+ #app-shell .sidebar nav a[data-view=feedback]:hover .icon-detail{animation:nav-idea-bold .9s ease}
+ #app-shell .settings-link:hover svg{transform:rotate(60deg) scale(1.12)}
+ :root[data-theme=light] .theme-toggle:hover>svg{animation:theme-sun-hover .9s cubic-bezier(.22,.8,.25,1)}
+ :root[data-theme=dark] .theme-toggle:hover>svg{animation:theme-moon-hover .9s cubic-bezier(.45,0,.55,1)}
+}
+.theme-toggle>svg{transform-origin:center;transition:transform .35s cubic-bezier(.22,.8,.25,1)}
+@keyframes nav-add-bold{0%{transform:scale(.55);opacity:.4}45%{transform:scale(1.45);opacity:1}70%{transform:scale(.9)}100%{transform:scale(1)}}
+@keyframes nav-alert-bold{0%,100%{transform:translateY(-3px) scale(1.18)}20%{transform:translateY(-3px) scale(1.18) rotate(-10deg)}40%{transform:translateY(-3px) scale(1.18) rotate(9deg)}60%{transform:translateY(-3px) scale(1.18) rotate(-6deg)}80%{transform:translateY(-3px) scale(1.18) rotate(3deg)}}
+@keyframes nav-clock-bold{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+@keyframes nav-idea-bold{0%{opacity:.3;transform:scale(.8)}40%{opacity:1;transform:scale(1.3)}65%{opacity:.65;transform:scale(1.05)}100%{opacity:1;transform:scale(1)}}
+@keyframes theme-sun-hover{0%{transform:rotate(0) scale(1)}55%{transform:rotate(110deg) scale(1.2)}100%{transform:rotate(180deg) scale(1)}}
+@keyframes theme-moon-hover{0%{rotate:0deg;transform:scale(1)}50%{transform:scale(1.1)}100%{rotate:360deg;transform:scale(1)}}
+@media(prefers-reduced-motion:reduce){.theme-toggle>svg{animation:none!important;transition:none;transform:none!important}}
+
+/* Petites étoiles décoratives, synchronisées avec l’orbite de la lune. */
+:root[data-theme=dark] .theme-toggle::before,
+:root[data-theme=dark] .theme-toggle::after{content:'';position:absolute;pointer-events:none;opacity:0;width:8px;height:8px;background:var(--jc-blue);clip-path:polygon(50% 0,63% 36%,100% 50%,63% 64%,50% 100%,37% 64%,0 50%,37% 36%);transform:scale(.3);z-index:1}
+:root[data-theme=dark] .theme-toggle::before{top:3px;right:2px}
+:root[data-theme=dark] .theme-toggle::after{bottom:3px;left:2px;width:6px;height:6px}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){
+ :root[data-theme=dark] .theme-toggle:hover::before{animation:theme-star-sparkle .8s ease-in-out .03s both}
+ :root[data-theme=dark] .theme-toggle:hover::after{animation:theme-star-sparkle .7s ease-in-out .15s both}
+}
+@keyframes theme-star-sparkle{0%{opacity:0;transform:scale(.65) rotate(-15deg)}35%{opacity:.8}55%{opacity:1;transform:scale(1) rotate(5deg)}75%{opacity:.85}100%{opacity:0;transform:scale(.8) rotate(20deg)}}
+@media(prefers-reduced-motion:reduce){.theme-toggle::before,.theme-toggle::after{display:none}}
+
+/* Logo du portail : zoom discret, sans modifier la place du bouton. */
+#sidebar-toggle .brand-logo img{transform-origin:center;transition:transform .28s cubic-bezier(.22,.8,.25,1)}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){#sidebar-toggle:hover .brand-logo img{transform:scale(1.08)}}
+@media(prefers-reduced-motion:no-preference){#sidebar-toggle:focus-visible .brand-logo img{transform:scale(1.08)}}
+@media(prefers-reduced-motion:reduce){#sidebar-toggle .brand-logo img{transition:none;transform:none}}
+
+/* Seul le texte du titre bouge ; le repère vertical reste fixe et visible. */
+#section-title .section-title-text{display:inline-block;min-width:0}
+
+/* Révélation progressive de gauche à droite, sans déplacement du texte. */
+#section-title .section-title-text{mask-image:linear-gradient(90deg,#000 0%,#000 30%,transparent 70%,transparent 100%);mask-size:340% 100%;mask-position:0% 0;mask-repeat:no-repeat;-webkit-mask-image:linear-gradient(90deg,#000 0%,#000 30%,transparent 70%,transparent 100%);-webkit-mask-size:340% 100%;-webkit-mask-position:0% 0;-webkit-mask-repeat:no-repeat}
+@media(prefers-reduced-motion:reduce){#section-title .section-title-text{mask-image:none;-webkit-mask-image:none}}
+
+/* Fiche de demande : fermeture en fondu doux, sans déplacement marqué. */
+
+/* Toutes les fenêtres gardent leur géométrie pendant leur fondu. */
+:root[data-theme] dialog{opacity:0;transform:none;transition:opacity .2s ease-out,display .2s allow-discrete,overlay .2s allow-discrete}
+:root[data-theme] dialog[open]{opacity:1;transform:none}
+:root[data-theme] dialog::backdrop{transition:background-color .2s ease-out,backdrop-filter .2s ease-out,display .2s allow-discrete,overlay .2s allow-discrete}
+:root[data-theme] dialog:not([open])::backdrop{background-color:transparent;backdrop-filter:blur(0px)}
+@starting-style{:root[data-theme] dialog[open]{opacity:0;transform:none}}
+/* Même largeur de page avant et après le verrouillage du défilement. */
+@media(hover:hover) and (pointer:fine) and (forced-colors:none){html{scrollbar-width:none}html::-webkit-scrollbar{display:none}}
+@media(prefers-reduced-motion:reduce){:root[data-theme] dialog,:root[data-theme] dialog::backdrop{transition:none}}
+
+/* La sélection du menu est peinte uniquement par l’indicateur animé. */
+:root[data-profile-palette] #app-shell .sidebar nav.has-sliding-outline a.active{background:transparent;border-color:transparent;outline-color:transparent;box-shadow:none}
+:root[data-profile-palette] #app-shell .sidebar nav.has-sliding-outline a.active::before{display:none}
+
+/* Notes et copie : contraste commun à tous les thèmes dark. */
+:root[data-theme=dark] #app-shell #main :is(.notes-indicator,.group-note-indicator,.copy-number),
+:root[data-theme=dark] #app-shell #main :is(.notes-indicator,.group-note-indicator,.copy-number):is(:hover,:focus-visible,:active),
+:root[data-theme=dark] dialog :is(.notes-indicator,.group-note-indicator,.copy-number),
+:root[data-theme=dark] dialog :is(.notes-indicator,.group-note-indicator,.copy-number):is(:hover,:focus-visible,:active){color:#fff}
+
+/* Notes et copie : contraste commun à tous les thèmes light. */
+:root[data-theme=light] #app-shell #main :is(.notes-indicator,.group-note-indicator,.copy-number),
+:root[data-theme=light] #app-shell #main :is(.notes-indicator,.group-note-indicator,.copy-number):is(:hover,:focus-visible,:active),
+:root[data-theme=light] dialog :is(.notes-indicator,.group-note-indicator,.copy-number),
+:root[data-theme=light] dialog :is(.notes-indicator,.group-note-indicator,.copy-number):is(:hover,:focus-visible,:active){color:#000}
+
+.inventory-message{padding:0 24px}.inventory-note{white-space:pre-wrap;overflow-wrap:anywhere;max-width:40ch}.inventory-panel table{white-space:normal}.inventory-editor{width:min(740px,calc(100% - 30px));max-height:calc(100dvh - 36px);overflow:auto}.inventory-editor .product-identity{display:grid;grid-template-columns:minmax(100px,.7fr) minmax(140px,1.5fr) minmax(110px,1fr);gap:12px}.inventory-editor .form-grid label{min-width:0}.inventory-editor .actions{position:sticky;bottom:0;padding:12px 0;background:var(--paper)}.inventory-tabs{padding-top:12px}.inventory-history{margin-top:16px;max-height:240px}
+@media(max-width:760px){.inventory-editor{width:calc(100vw - 16px);padding:16px}.inventory-editor .product-identity{grid-template-columns:1fr!important}.inventory-editor .form-grid{gap:12px}.inventory-panel .order-quantity{white-space:normal}.inventory-panel .inventory-tabs{padding:12px;gap:8px}}
+
+.inventory-panel .order-quantity strong{color:var(--ink);font-size:15px}.inventory-panel .order-quantity{gap:5px;flex-wrap:wrap}.inventory-panel [data-more][hidden]{display:none}
+
+.inventory-editor .product-identity>label{width:100%;min-width:0}
+
+
+/* Remise en inventaire : retour vers la boîte, puis ajout confirmé. */
+@media(hover:hover) and (prefers-reduced-motion:no-preference){
+ #app-shell .sidebar nav a[data-view=inventory]:hover .inventory-return-arrow{transform-origin:18px 8px;animation:nav-inventory-return .85s cubic-bezier(.22,.8,.25,1)}
+ #app-shell .sidebar nav a[data-view=inventory]:hover .inventory-add-mark{transform-box:fill-box;transform-origin:center;animation:nav-add-bold .65s cubic-bezier(.22,.8,.25,1) .2s both}
+}
+@keyframes nav-inventory-return{0%{transform:translate(2px,-2px) rotate(45deg);opacity:.4}60%{transform:translate(0,0) rotate(-12deg);opacity:1}100%{transform:translate(0,0) rotate(0);opacity:1}}
+
+.inventory-adjust-confirm{max-width:520px}.inventory-adjust-confirm p{line-height:1.6}.inventory-adjust-confirm .actions{display:flex;flex-wrap:nowrap}.inventory-adjust-confirm .actions>button{flex:1}.inventory-panel .check-column{text-align:center}
+
+/* Même axe pour l’en-tête et la quantité d’inventaire. */
+.inventory-panel th.inventory-quantity-heading,.inventory-panel td.order-quantity-cell{text-align:center;vertical-align:middle}
+.inventory-panel td.order-quantity-cell .order-quantity{margin-inline:auto;justify-content:center;text-align:center}
+
+/* Inventaire bureau : six colonnes régulières, comme les autres listes. */
+@media(min-width:761px){
+ .inventory-panel table{table-layout:fixed}
+ .inventory-panel table th,.inventory-panel table td{width:calc(100% / 6);padding-left:16px;padding-right:16px;vertical-align:middle;white-space:normal;overflow-wrap:anywhere}
+ .inventory-panel table th{text-align:center}
+ .inventory-panel table th:first-child{text-align:left}
+ .inventory-panel table td.order-quantity-cell,.inventory-panel table td.check-column,.inventory-panel table td:last-child{text-align:center}
+ .inventory-panel td:last-child .row-actions{justify-content:center}
+ .inventory-panel .order-quantity{max-width:100%;min-width:0}
+}
+
+@media(min-width:761px){.inventory-panel table td:nth-child(3),.inventory-panel table td:nth-child(4){text-align:center}.inventory-panel .inventory-note{margin-left:auto;margin-right:auto}}
+
+/* Dégradés visibles : nuances de chaque couleur, du ton lumineux au ton profond. */
+:root:not([data-profile-palette]) #app-shell .sidebar{background:linear-gradient(165deg,#0864b6 0%,#08437f 42%,#061b39 100%);border-color:#315b84}
+:root[data-theme][data-profile-palette="sky-blue"] #app-shell .sidebar{background:linear-gradient(165deg,#0b86b9 0%,#07577e 42%,#032a43 100%);border-color:#359dcb}
+:root[data-theme][data-profile-palette="neon-pink"] #app-shell .sidebar{background:linear-gradient(165deg,#bc247a 0%,#841450 42%,#3f072b 100%);border-color:#bc5a94}
+:root[data-theme][data-profile-palette="lilac"] #app-shell .sidebar{background:linear-gradient(165deg,#9160b5 0%,#603b84 42%,#2d173f 100%);border-color:#a17bc0}
+:root[data-theme][data-profile-palette="forest-black"] #app-shell .sidebar{background:linear-gradient(165deg,#287747 0%,#174e30 42%,#071e12 100%);border-color:#497b56}
+
+/* Sélection du menu : dégradé contrasté porté par la sélection animée unique. */
+:root:not([data-profile-palette]) #app-shell .sidebar nav.has-sliding-outline .nav-sliding-outline{background:linear-gradient(115deg,#2679ca 0%,#185d9e 45%,#103b70 100%)}
+:root[data-theme][data-profile-palette="charcoal-red"] #app-shell .sidebar nav.has-sliding-outline .nav-sliding-outline{background:linear-gradient(115deg,#dc1c1c 0%,#a20f0f 45%,#651010 100%)}
+:root[data-theme][data-profile-palette="neon-pink"] #app-shell .sidebar nav.has-sliding-outline .nav-sliding-outline{background:linear-gradient(115deg,#c02d83 0%,#951a61 45%,#60103f 100%)}
+:root[data-theme][data-profile-palette="sky-blue"] #app-shell .sidebar nav.has-sliding-outline .nav-sliding-outline{background:linear-gradient(115deg,#147fae 0%,#09638c 45%,#053c5b 100%)}
+:root[data-theme][data-profile-palette="lilac"] #app-shell .sidebar nav.has-sliding-outline .nav-sliding-outline{background:linear-gradient(115deg,#8b5ab4 0%,#6d3e93 45%,#442458 100%)}
+:root[data-theme][data-profile-palette="forest-black"] #app-shell .sidebar nav.has-sliding-outline .nav-sliding-outline{background:linear-gradient(115deg,#347d4f 0%,#225e3a 45%,#113d25 100%)}
+@media(forced-colors:active){:root[data-theme] #app-shell .sidebar nav.has-sliding-outline .nav-sliding-outline{background:Highlight}}
+
+/* Actions de création assorties au dégradé de sélection du menu. */
+:root{--create-gradient:linear-gradient(115deg,#2679ca 0%,#185d9e 45%,#103b70 100%);--create-edge:#6da8df}
+:root[data-profile-palette="charcoal-red"]{--create-gradient:linear-gradient(115deg,#dc1c1c 0%,#a20f0f 45%,#651010 100%);--create-edge:#ff6868}
+:root[data-profile-palette="neon-pink"]{--create-gradient:linear-gradient(115deg,#c02d83 0%,#951a61 45%,#60103f 100%);--create-edge:#ef8ac5}
+:root[data-profile-palette="sky-blue"]{--create-gradient:linear-gradient(115deg,#147fae 0%,#09638c 45%,#053c5b 100%);--create-edge:#69c9ef}
+:root[data-profile-palette="lilac"]{--create-gradient:linear-gradient(115deg,#8b5ab4 0%,#6d3e93 45%,#442458 100%);--create-edge:#cba6e8}
+:root[data-profile-palette="forest-black"]{--create-gradient:linear-gradient(115deg,#347d4f 0%,#225e3a 45%,#113d25 100%);--create-edge:#8acb9f}
+:root[data-theme] #app-shell :is(#new,#add-user,#download-backup,.tracked-panel [data-new],.tracked-panel [data-import]){background:var(--create-gradient);border:1px solid var(--create-edge);color:var(--create-ink,#fff);box-shadow:0 3px 10px #0000001c;transition:filter .16s ease,box-shadow .16s ease,transform .12s ease}
+:root[data-theme] #app-shell :is(#new,#add-user,#download-backup,.tracked-panel [data-new],.tracked-panel [data-import]):hover{background:var(--create-gradient);color:var(--create-ink,#fff);filter:brightness(1.1);border-color:var(--create-edge)}
+:root[data-theme] #app-shell :is(#new,#add-user,#download-backup,.tracked-panel [data-new],.tracked-panel [data-import]):focus-visible{outline:2px solid var(--create-edge);outline-offset:3px}
+@media(forced-colors:active){:root[data-theme] #app-shell :is(#new,#add-user,#download-backup,.tracked-panel [data-new],.tracked-panel [data-import]),:root[data-theme] #app-shell :is(#new,#add-user,#download-backup,.tracked-panel [data-new],.tracked-panel [data-import]):hover{background:ButtonFace;color:ButtonText;border-color:ButtonText;filter:none}}
+@media(prefers-reduced-motion:reduce){:root[data-theme] #app-shell :is(#new,#add-user,#download-backup,.tracked-panel [data-new],.tracked-panel [data-import]){transition:none}}
+
+/* Enregistrement des fiches : même dégradé que les actions de création. */
+:root[data-theme] :is(#editor,#user-editor,.tracked-editor,.inventory-editor) button.primary[type="submit"]{background:var(--create-gradient);border:1px solid var(--create-edge);color:var(--create-ink,#fff);box-shadow:0 3px 10px #0000001c;transition:filter .16s ease,box-shadow .16s ease,transform .12s ease}
+:root[data-theme] :is(#editor,#user-editor,.tracked-editor,.inventory-editor) button.primary[type="submit"]:hover:not(:disabled){background:var(--create-gradient);color:var(--create-ink,#fff);filter:brightness(1.1);border-color:var(--create-edge)}
+:root[data-theme] :is(#editor,#user-editor,.tracked-editor,.inventory-editor) button.primary[type="submit"]:focus-visible{outline:2px solid var(--create-edge);outline-offset:3px}
+@media(forced-colors:active){:root[data-theme] :is(#editor,#user-editor,.tracked-editor,.inventory-editor) button.primary[type="submit"],:root[data-theme] :is(#editor,#user-editor,.tracked-editor,.inventory-editor) button.primary[type="submit"]:hover:not(:disabled){background:ButtonFace;color:ButtonText;border-color:ButtonText;filter:none}}
+@media(prefers-reduced-motion:reduce){:root[data-theme] :is(#editor,#user-editor,.tracked-editor,.inventory-editor) button.primary[type="submit"]{transition:none}}
+
+/* Confirmation de suppression : dégradé du thème, libellé explicite conservé. */
+:root[data-theme] :is(#delete-confirm,#user-delete-confirm,.feedback-delete-confirm,.inventory-adjust-confirm) button:is(.delete-primary,[data-confirm]){background:var(--create-gradient);border:1px solid var(--create-edge);color:var(--create-ink,#fff);box-shadow:0 3px 10px #0000001c;transition:filter .16s ease,box-shadow .16s ease,transform .12s ease}
+:root[data-theme] :is(#delete-confirm,#user-delete-confirm,.feedback-delete-confirm,.inventory-adjust-confirm) button:is(.delete-primary,[data-confirm]):hover:not(:disabled){background:var(--create-gradient);color:var(--create-ink,#fff);filter:brightness(1.1)}
+:root[data-theme] :is(#delete-confirm,#user-delete-confirm,.feedback-delete-confirm,.inventory-adjust-confirm) button:is(.delete-primary,[data-confirm]):focus-visible{outline:2px solid var(--create-edge);outline-offset:3px}
+@media(forced-colors:active){:root[data-theme] :is(#app-shell,dialog) button.delete-primary{background:ButtonFace!important;color:ButtonText!important;border-color:ButtonText!important;filter:none!important}}
+@media(prefers-reduced-motion:reduce){:root[data-theme] :is(#delete-confirm,#user-delete-confirm,.feedback-delete-confirm,.inventory-adjust-confirm) button:is(.delete-primary,[data-confirm]){transition:none}}
+
+/* Envoi des suggestions : même dégradé que les autres actions principales. */
+:root[data-theme] #app-shell .feedback-compose .feedback-form button.primary[type="submit"]{background:var(--create-gradient);border:1px solid var(--create-edge);color:var(--create-ink,#fff);box-shadow:0 3px 10px #0000001c;transition:filter .16s ease,box-shadow .16s ease,transform .12s ease}
+:root[data-theme] #app-shell .feedback-compose .feedback-form button.primary[type="submit"]:hover:not(:disabled){background:var(--create-gradient);color:var(--create-ink,#fff);filter:brightness(1.1);border-color:var(--create-edge)}
+:root[data-theme] #app-shell .feedback-compose .feedback-form button.primary[type="submit"]:focus-visible{outline:2px solid var(--create-edge);outline-offset:3px}
+@media(forced-colors:active){:root[data-theme] #app-shell .feedback-compose .feedback-form button.primary[type="submit"],:root[data-theme] #app-shell .feedback-compose .feedback-form button.primary[type="submit"]:hover:not(:disabled){background:ButtonFace;color:ButtonText;border-color:ButtonText;filter:none}}
+@media(prefers-reduced-motion:reduce){:root[data-theme] #app-shell .feedback-compose .feedback-form button.primary[type="submit"]{transition:none}}
+
+
+/* Annulation secondaire : surface neutre et accents du thème. */
+:root[data-theme] :is(#editor,#user-editor,#delete-confirm,#user-delete-confirm,dialog) .actions button.secondary:is(#cancel,[id$="-cancel"],[data-cancel],[data-close],.feedback-delete-cancel){background:var(--paper,#fff);border:1px solid var(--border);color:var(--ink);box-shadow:none;transition:background-color .16s ease,border-color .16s ease,color .16s ease}
+:root[data-theme] :is(#editor,#user-editor,#delete-confirm,#user-delete-confirm,dialog) .actions button.secondary:is(#cancel,[id$="-cancel"],[data-cancel],[data-close],.feedback-delete-cancel):hover:not(:disabled){background:var(--jc-pale);border-color:var(--create-edge);color:var(--ink);filter:none;box-shadow:none}
+:root[data-theme] :is(#editor,#user-editor,#delete-confirm,#user-delete-confirm,dialog) .actions button.secondary:is(#cancel,[id$="-cancel"],[data-cancel],[data-close],.feedback-delete-cancel):focus-visible{outline:2px solid var(--create-edge);outline-offset:3px}
+@media(forced-colors:active){:root[data-theme] :is(#editor,#user-editor,#delete-confirm,#user-delete-confirm,dialog) .actions button.secondary:is(#cancel,[id$="-cancel"],[data-cancel],[data-close],.feedback-delete-cancel),:root[data-theme] :is(#editor,#user-editor,#delete-confirm,#user-delete-confirm,dialog) .actions button.secondary:is(#cancel,[id$="-cancel"],[data-cancel],[data-close],.feedback-delete-cancel):hover:not(:disabled){background:ButtonFace;color:ButtonText;border-color:ButtonText;filter:none}}
+@media(prefers-reduced-motion:reduce){:root[data-theme] :is(#editor,#user-editor,#delete-confirm,#user-delete-confirm,dialog) .actions button.secondary:is(#cancel,[id$="-cancel"],[data-cancel],[data-close],.feedback-delete-cancel){transition:none}}
+
+/* Date du bandeau : mini-calendrier assorti au profil. */
+#app-shell #today{font-size:11px;color:var(--ink);flex-shrink:0}
+#today .header-date{display:flex;align-items:center;gap:9px;padding:4px 10px 4px 4px;border:1px solid var(--border);border-radius:11px;background:var(--paper);line-height:1.2}
+#today .header-date-day{display:grid;place-items:center;min-width:34px;height:34px;border-radius:8px;background:var(--create-gradient);color:var(--create-ink,#fff);font-size:20px;font-weight:750;font-variant-numeric:tabular-nums;letter-spacing:-.8px;box-shadow:inset 0 1px 0 #ffffff26}
+#today .header-date-details{display:grid;gap:3px}
+#today .header-date-weekday{font-size:9px;font-weight:650;text-transform:uppercase;letter-spacing:.8px;color:var(--jc-blue)}
+#today .header-date-month{font-size:10px;color:var(--muted);white-space:nowrap;text-transform:capitalize}
+@media(forced-colors:active){#today .header-date-day{background:Canvas;color:CanvasText;border:1px solid CanvasText}}
+
+
+/* Croix centrée dans le bouton, indépendamment des métriques de la police. */
+button.icon-button[aria-label^="Fermer"] {
+  position: relative;
+  padding: 0;
+  flex-shrink: 0;
+  font-size: 0;
+}
+button.icon-button[aria-label^="Fermer"]::before,
+button.icon-button[aria-label^="Fermer"]::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 13px;
+  border-top: 2px solid currentColor;
+  border-radius: 2px;
+  pointer-events: none;
+}
+button.icon-button[aria-label^="Fermer"]::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+button.icon-button[aria-label^="Fermer"]::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+
+/* Les croix héritent de l’accent du thème actif. */
+:root[data-theme] :is(#app-shell,dialog,.portal-calendar) button.icon-button[aria-label^="Fermer"] {
+  color: var(--jc-blue);
+  background: color-mix(in srgb, var(--jc-pale) 55%, var(--paper));
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  box-shadow: none;
+  transform: none;
+  transition: background-color .2s ease-out, border-color .2s ease-out;
+}
+:root[data-theme] :is(#app-shell,dialog,.portal-calendar) button.icon-button[aria-label^="Fermer"]:hover {
+  color: var(--jc-blue);
+  background: var(--jc-pale);
+  border-color: color-mix(in srgb, currentColor 24%, transparent);
+  box-shadow: none;
+  transform: none;
+}
+:root[data-theme] :is(#app-shell,dialog,.portal-calendar) button.icon-button[aria-label^="Fermer"]:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  :root[data-theme] :is(#app-shell,dialog,.portal-calendar) button.icon-button[aria-label^="Fermer"] { transition: none; }
+}
+
+
+/* Le format peut occuper plusieurs lignes dans les cellules de quantité. */
+.order-quantity-cell .order-quantity {
+  max-inline-size: min(180px, 100%);
+}
+:is(.order-quantity-cell,.tracked-quantity-cell) .quantity-format {
+  min-inline-size: 0;
+  max-inline-size: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.order-quantity .quantity-format > span {
+  min-inline-size: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+
+/* Un peu plus de place au format, sans réduire la colonne Produit. */
+@media (min-width: 761px) {
+  .orders-table col:nth-child(2) { width: 12%; }
+  .orders-table col:nth-child(3) { width: 10%; }
+  .orders-table col:nth-child(4),
+  .orders-table col:nth-child(5) { width: 11%; }
+  .orders-table col:nth-child(6) { width: 16%; }
+
+  .atp-table :is(th,td):nth-child(2) { width: 12%; }
+  .atp-table :is(th,td):nth-child(3) { width: 11%; }
+  .atp-table :is(th,td):nth-child(4) { width: 13%; }
+  .atp-table :is(th,td):nth-child(5) { width: 20%; }
+
+  :is(.atp-table,.orders-table) td.order-quantity-cell { padding-inline: 8px; }
+  :is(.atp-table,.orders-table) .order-quantity-cell .order-quantity { padding-inline: 8px; }
+}
+
+
+/* Contraste du choix Médicament / Fourniture selon le thème. */
+:root[data-theme]:not([data-profile-palette="charcoal-red"]) .type-options::before {
+  background: linear-gradient(#00000015, #00000015), var(--create-gradient);
+  border-color: var(--create-edge);
+}
+:root[data-theme]:is([data-profile-palette="banana-yellow"],[data-profile-palette="lime-green"]) .type-options::before {
+  background: var(--create-gradient);
+}
+:root[data-theme]:not([data-profile-palette="charcoal-red"]) .type-options .type-option input:checked + span {
+  color: var(--create-ink, #fff);
+}
+@media (forced-colors: active) {
+  :root[data-theme]:not([data-profile-palette="charcoal-red"]) .type-options::before {
+    background: Canvas;
+    border-color: CanvasText;
+  }
+  :root[data-theme]:not([data-profile-palette="charcoal-red"]) .type-options .type-option input:checked + span {
+    color: CanvasText;
+  }
+}

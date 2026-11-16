@@ -1,0 +1,492 @@
+/* Palette inspirée du bleu et du rouge Jean Coutu, pour le prototype Labo PJC019. */
+:root{
+  --jc-blue:#0056a6;
+  --jc-navy:#00366d;
+  --jc-red:#df2338;
+  --jc-pale:#edf4fc;
+  --ink:#233852;
+  --muted:#718096;
+  --green:var(--jc-blue);
+  --red:#bf2538;
+  --border:#dfe6ef;
+  --bg:#f4f6fa;
+  color-scheme:light;
+}
+body{background:var(--bg)}
+.sidebar{background:linear-gradient(165deg,#004b91 0%,var(--jc-navy) 75%);color:#edf4ff;border-right:1px solid #003165}
+.brand-icon{background:var(--jc-red);border-color:transparent;color:white;border-radius:10px;box-shadow:0 3px 10px #001a3d20}
+.brand small{color:#bed6ef}
+.nav-label{color:#afc9e5}
+nav a{border:1px solid transparent}
+nav a:hover{background:#ffffff12}
+nav a.active{position:relative;background:white;color:var(--jc-navy);border-color:#ffffff80;box-shadow:0 3px 10px #0028521f}
+nav a.active:before{content:'';position:absolute;left:0;top:11px;bottom:11px;width:3px;border-radius:3px;background:var(--jc-red)}
+.side-note p{color:#b9cee6}
+.live-dot{background:#b9d9fa}
+.side-bottom{border-top-color:#ffffff25}
+.side-bottom small{color:#bed2e9}
+.avatar{background:#ffffff16;color:white;border:1px solid #ffffff25}
+.logout-button{color:#e4efff}
+.topbar{border-top:3px solid var(--jc-red);border-bottom-color:var(--border);color:#6a7890}
+.topbar b{color:#bcc7d6}
+.topbar strong{color:var(--jc-navy)}
+.local-pill{background:var(--jc-pale);color:var(--jc-blue)}
+.eyebrow{color:var(--jc-blue)}
+h1{color:var(--jc-navy)}
+.primary{background:var(--jc-blue);box-shadow:0 2px 5px #00366d12}
+.primary:hover{background:#004787}
+#new{background:var(--jc-red)}
+#new:hover{background:#bf1d30}
+.secondary{color:var(--jc-navy);border-color:#d5dfeb}
+.secondary:hover{background:#f2f6fc;border-color:#b6cbe2}
+.text-button{color:var(--jc-blue)}
+.panel,.metric{border-color:var(--border);box-shadow:0 2px 8px #163f6b04}
+.metric .metric-icon{background:var(--jc-pale);color:var(--jc-blue)}
+thead{background:#f3f6fb;color:#667b96}
+tbody tr:hover{background:#fafcff}
+td small{color:#74839a}
+.toolbar input,.toolbar select{background:#fafbfd}
+input,select,textarea{border-color:#d5deea;color:var(--ink)}
+input:focus,select:focus,textarea:focus{border-color:var(--jc-blue)}
+.badge.new{background:#eaf2fc;color:#315e92}
+.badge.ordered{background:#e4effc;color:#00519e}
+.badge.danger{background:#fcebed;color:#b72c3c}
+.badge.warning,.badge.waiting{background:#fff1dd;color:#9b5c14}
+.help-strip{background:#edf4fc;border-color:#d5e4f5;color:#5c7390}
+.help-strip strong{color:#26588b}
+.din-result{background:#f1f5fa}
+.din-result.warning{background:#fff4e5;color:#89571c}
+.din-result.danger{background:#fcebed;color:#a82d3e}
+.icon-button{background:#edf2f9;color:var(--jc-navy)}
+.icon-button:hover{background:#dfeaf8}
+dialog{border-color:#dce5f0;box-shadow:0 22px 90px #002c6140}
+dialog::backdrop{background:#10274470}
+.history-dialog .history{background:#f4f7fb}
+.history-dialog .history strong{color:var(--jc-blue)}
+.confirm-icon{background:#fcebed;color:var(--red)}
+.confirm-record{background:#f3f6fa}
+#toast{background:var(--jc-navy);box-shadow:0 5px 18px #00285120}
+.login-screen{background:radial-gradient(ellipse at top left,#dceafa,transparent 65%),#f4f6fa}
+.login-card{position:relative;overflow:hidden;border-color:#dce5ef;box-shadow:0 18px 60px #00366d0d}
+.login-card:before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(to right,var(--jc-blue) 0 70%,var(--jc-red) 70% 100%)}
+.login-logo{background:var(--jc-red);color:white}
+.login-demo{color:#60758e}
+.quantity-control{border-color:#d5deea}
+.quantity-control:has(:focus-visible){border-color:var(--jc-blue);box-shadow:0 0 0 3px #0056a614}
+.quantity-control button{background:#edf4fc;color:var(--jc-blue)}
+.quantity-control button:hover:not(:disabled){background:#dceafb}
+.quantity-control button:active:not(:disabled){background:#c9dff7}
+.quantity-control button:disabled{background:#f5f7fa;color:#b1bfce}
+.product-identity input::placeholder,.quantity-control input::placeholder{color:#9aa6b6}
+.form-grid .shelf-option{background:#f6f8fb;border-color:#dce4ef}
+.shelf-option:hover{background:#eff5fc;border-color:#afc8e5}
+.shelf-switch{background:#c8d3e0}
+.shelf-option:has(input:checked){background:#edf4fd;border-color:#8cb3dd}
+.shelf-option:has(input:checked) .shelf-icon{color:var(--jc-blue);border-color:#c6dbee}
+.shelf-option:has(input:focus-visible){outline-color:#0056a666}
+.ordered-check input{background:#f3f6fb;border-color:#bdcde0}
+.ordered-check input:hover:not(:disabled){box-shadow:0 0 0 3px #0056a60d}
+.ordered-check input:disabled{background:#edf1f6;border-color:#d2dce8}
+.ordered-check input:disabled:checked{background:#8daac9;border-color:#8daac9}
+.type-options{background:#edf1f7;border-color:#dde5ef}
+.type-option>span{color:#708299}
+.type-option:hover>span{color:var(--jc-blue);background:#e3edfa}
+.type-option input:checked+span{color:var(--jc-blue);background:white;border-color:#b6cfea;box-shadow:0 1px 5px #00366d0b}
+.edit-button{color:#8292a7}
+.edit-button:hover{color:var(--jc-blue);background:#edf4fc;border-color:#c6daef}
+.trash-button{color:#8292a7}
+.trash-button:hover{background:#fcebed;border-color:#f0cfd6}
+.form-grid input:disabled{background:#f0f3f8;color:#8999ad}
+footer{color:#8090a6}
+/* Symbole officiel Jean Coutu, conservé dans ses couleurs d'origine. */
+.brand{gap:10px;padding-left:8px;padding-right:8px;font-size:22px}
+.brand-logo{display:grid;place-items:center;flex:0 0 46px;width:46px;height:44px;padding:5px;background:white;border:1px solid #ffffff80;border-radius:8px;box-shadow:0 2px 7px #00285220}
+.brand-logo img{display:block;max-width:100%;height:auto;object-fit:contain}
+.login-brand-logo{width:58px;height:54px;margin-bottom:25px;padding:9px;border-color:var(--border);box-shadow:none}
+/* Paramètres de l'équipe. */
+.user-initials{display:inline-block;min-width:45px;padding:7px 10px;border-radius:6px;background:var(--jc-pale);color:var(--jc-blue);font-size:11px;font-weight:600;text-align:center;letter-spacing:.6px}
+.user-editor{width:min(540px,calc(100% - 30px))}
+.user-form-grid{display:grid;grid-template-columns:135px minmax(0,1fr);gap:17px}
+.user-form-grid label{display:grid;gap:8px;font-size:11px;font-weight:600}
+.user-form-grid input[name=initials]{text-transform:uppercase;letter-spacing:1px}
+@media(max-width:480px){.user-form-grid{grid-template-columns:minmax(0,1fr)}}
+/* Accès discret aux paramètres dans le coin supérieur droit. */
+.settings-link{display:inline-grid;place-items:center;flex:0 0 34px;width:34px;height:34px;border:1px solid transparent;border-radius:8px;color:var(--jc-blue);background:transparent}
+.settings-link:hover,.settings-link.active{background:var(--jc-pale);border-color:#ccddf0}
+.settings-link:focus-visible{outline:2px solid var(--jc-blue);outline-offset:3px}
+.settings-link svg{display:block}
+.order-pages{display:flex;flex-wrap:wrap;gap:8px;padding:16px 20px 0}
+.order-page{display:flex;align-items:center;gap:10px;padding:10px 15px;border:1px solid #ccddf0;border-radius:8px;background:white;color:var(--jc-blue);font-weight:600}
+.order-page.active{background:var(--jc-blue);color:white;border-color:var(--jc-blue)}
+.order-page span{padding:2px 7px;border-radius:12px;background:#e8eff8;color:var(--jc-blue);font-size:11px}
+
+.order-pages + .toolbar{margin-top:16px}
+
+/* Colonne de confirmation de commande. */
+th.check-column,td.check-column{text-align:center;width:115px;min-width:115px}
+td.check-column>.ordered-check{justify-content:center}
+td>.ordered-meta{display:block;position:static;margin-top:8px}
+
+
+/* Cases centrées et colonnes compactes. */
+td.check-column:has(>.ordered-check){min-width:115px;width:115px;padding-left:12px;padding-right:12px}
+th.check-column{padding-left:12px;padding-right:12px}
+td:has(>.ordered-meta){min-width:0;padding-right:12px}
+
+
+/* Gestion des commandes : une grille régulière pour les sept colonnes. */
+.orders-table{table-layout:fixed;min-width:1050px}
+.orders-table col{width:calc(100% / 7)}
+.orders-table th,.orders-table td{padding-left:16px;padding-right:16px;text-align:center;white-space:normal;overflow-wrap:anywhere}
+.orders-table td:first-child,.orders-table th:first-child{text-align:left}
+.orders-table td.check-column:has(>.ordered-check){min-width:0;width:auto;padding-left:16px;padding-right:16px}
+.orders-table td .ordered-meta{width:auto;height:auto;min-height:0;margin-top:6px;line-height:1.5;position:static}
+.orders-table td .ordered-meta[aria-hidden=true]{display:none}
+.orders-table .row-actions{justify-content:center}
+/* Gestion des ruptures : six colonnes de même largeur. */
+.shortages-table{table-layout:fixed;min-width:1000px}
+.shortages-table th,.shortages-table td{width:calc(100% / 6);padding-left:16px;padding-right:16px;text-align:center;white-space:normal;overflow-wrap:anywhere}
+.shortages-table th:first-child,.shortages-table td:first-child{text-align:left}
+.shortages-table td.check-column:has(>.ordered-check){min-width:0;width:calc(100% / 6);padding-left:16px;padding-right:16px}
+.shortages-table .row-actions{justify-content:center}
+
+
+/* Espace ATP : six colonnes de même largeur. */
+.atp-table{table-layout:fixed;min-width:900px}
+.atp-table th,.atp-table td{width:calc(100% / 6);padding-left:16px;padding-right:16px;text-align:center;white-space:normal;overflow-wrap:anywhere}
+.atp-table th:first-child,.atp-table td:first-child{text-align:left}
+.atp-table .row-actions{justify-content:center}
+
+
+/* Le bloc de vérification DIN garde sa hauteur naturelle. */
+.split>.check-panel{align-self:start}
+
+
+/* Plus de place aux demandes sur bureau. */
+@media(min-width:1151px){.split{grid-template-columns:minmax(0,1fr) 270px}}
+
+
+
+/* Menu repliable, commandé par le logo Jean Coutu. */
+.sidebar-toggle{border:0;background:transparent;color:inherit;text-align:left;width:100%;font-family:inherit;cursor:pointer}
+.sidebar nav .nav-text{font-size:13px;width:auto;text-align:left}
+@media(min-width:761px){
+ .sidebar-collapsed .sidebar{width:78px;padding-left:10px;padding-right:10px}
+ .sidebar-collapsed .workspace{margin-left:78px}
+ .sidebar-collapsed .brand{padding:0;justify-content:center}
+ .sidebar-collapsed .brand>span:last-child,.sidebar-collapsed .nav-label,.sidebar-collapsed .side-note,.sidebar-collapsed .side-bottom{display:none}
+ .sidebar-collapsed nav{margin-top:44px}
+ .sidebar-collapsed nav a{justify-content:center;padding:14px 8px}
+ .sidebar-collapsed nav .nav-text{display:none}
+ .sidebar-collapsed nav a>span:first-child{display:block;width:24px}
+}
+@media(max-width:760px){.sidebar nav .nav-text{display:inline;font-size:11px}}
+
+@media(min-width:761px){.sidebar-collapsed #logout-mobile{display:none}}
+
+
+/* Ouverture et repli animés du menu de bureau. */
+@media(min-width:761px){
+ .sidebar{transition:width .25s ease,padding .25s ease;overflow-x:hidden}
+ .workspace{transition:margin-left .25s ease}
+ .sidebar .brand,.sidebar nav a{white-space:nowrap}
+ .sidebar .brand>span:last-child,.sidebar nav .nav-text{transition:opacity .18s ease,max-width .25s ease;max-width:210px;opacity:1;overflow:hidden}
+ .sidebar-collapsed .brand>span:last-child,.sidebar-collapsed nav .nav-text{display:block;max-width:0;opacity:0}
+ .sidebar-collapsed .brand,.sidebar-collapsed nav a{gap:0}
+}
+@media(prefers-reduced-motion:reduce){.sidebar,.workspace,.sidebar .brand>span:last-child,.sidebar nav .nav-text{transition:none}}
+
+/* Le menu s'ouvre au-dessus du contenu; la page reste immobile. */
+@media(min-width:761px){
+ #app-shell .workspace{margin-left:78px;transition:none}
+ #app-shell .sidebar{z-index:20}
+ #app-shell:not(.sidebar-collapsed) .sidebar{box-shadow:12px 0 28px #00366d25}
+ #app-shell .brand{padding-left:10px;padding-right:0;justify-content:flex-start;gap:12px}
+ #app-shell .brand-logo{flex-shrink:0}
+ #app-shell .sidebar nav a{justify-content:flex-start;padding-left:16px;padding-right:8px}
+ #app-shell.sidebar-collapsed .brand{padding-left:10px;gap:0}
+ #app-shell.sidebar-collapsed nav a{gap:0}
+ #app-shell nav{margin-top:44px}
+ #app-shell .nav-label{display:none}
+}
+
+/* Initiales visibles dans le bas du menu réduit. */
+@media(min-width:761px){
+ #app-shell.sidebar-collapsed .side-bottom{display:flex;justify-content:center;padding:22px 0 0;margin-top:auto}
+ #app-shell.sidebar-collapsed .side-bottom>div{display:none}
+ #app-shell.sidebar-collapsed .avatar{display:grid;place-items:center;flex:0 0 46px;width:46px;height:46px;padding:0;border-radius:50%;font-size:12px;font-weight:600}
+}
+/* Logo et icônes fixes; le contenu accompagne la largeur du menu. */
+@media(min-width:761px){
+ #app-shell .sidebar{padding:36px 10px;transition:width .25s ease}
+ #app-shell .workspace{margin-left:250px;transition:margin-left .25s ease}
+ #app-shell.sidebar-collapsed .workspace{margin-left:78px}
+ #app-shell .sidebar .brand{padding:0 0 0 6px;gap:12px;height:44px;min-height:44px;overflow:visible}
+ #app-shell .sidebar .brand-logo{flex:0 0 46px;width:46px;height:44px}
+ #app-shell .sidebar nav{margin-top:44px;gap:9px}
+ #app-shell .sidebar nav a{height:54px;min-height:54px;padding:14px 16px;gap:12px;overflow:hidden}
+ #app-shell .sidebar nav a>span:first-child{display:block;flex:0 0 24px;width:24px;text-align:center}
+ #app-shell .sidebar nav .nav-text{flex-shrink:0;white-space:nowrap}
+ #app-shell .sidebar .side-bottom{display:flex;position:relative;flex:0 0 70px;height:70px;min-height:70px;padding:22px 6px 0;gap:12px;margin-top:auto;white-space:nowrap;justify-content:flex-start}
+ #app-shell .sidebar .avatar{display:grid;place-items:center;flex:0 0 46px;width:46px;height:46px;padding:0;border-radius:50%;font-size:12px;font-weight:600}
+ #app-shell .sidebar .side-bottom>div{display:block;position:absolute;left:64px;bottom:0;width:160px;transition:opacity .18s ease;opacity:1}
+ #app-shell.sidebar-collapsed .side-bottom>div{opacity:0;visibility:hidden;pointer-events:none}
+}
+@media(min-width:761px) and (max-width:1150px){#app-shell:not(.sidebar-collapsed) .workspace{margin-left:220px}}
+@media(prefers-reduced-motion:reduce){#app-shell .sidebar,#app-shell .workspace,#app-shell .sidebar .side-bottom>div{transition:none}}
+
+/* Icônes vectorielles des sections. */
+.sidebar nav .nav-icon{display:grid!important;place-items:center;line-height:0}
+.sidebar nav .nav-icon svg{display:block;width:24px;height:24px;flex-shrink:0}
+
+
+/* Les options tablette et devons partagent une ligne. */
+.owing-rx>.shelf-option,.owing-rx:has(#rx-fields:not([hidden]))>.shelf-option{margin-top:0;min-height:40px;height:auto;align-self:stretch}
+.owing-rx #rx-fields{grid-column:1}
+@media(max-width:480px){.owing-rx #rx-fields{grid-column:1}}
+
+/* Apparition des champs conditionnels et transitions de sélection. */
+@keyframes field-reveal{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+#rx-fields:not([hidden]),#record-form label:has(#expected-return):not([hidden]),.duplicate-notice:not([hidden]){animation:field-reveal .22s ease-out both}
+.type-option>span,input,select,textarea{transition:border-color .18s ease,background-color .18s ease,box-shadow .18s ease}
+@media(prefers-reduced-motion:reduce){#rx-fields,.product-identity label,#record-form label:has(#expected-return),.duplicate-notice{animation:none}.type-option>span,input,select,textarea{transition:none}}
+
+/* La hauteur du champ Rx est animée dans les deux sens. */
+#rx-fields:not([hidden]){animation:none}
+
+
+/* La date de retour utilise la même animation de hauteur que le champ Rx. */
+#record-form label:has(#expected-return):not([hidden]){animation:none;min-height:0;align-self:start}
+
+
+/* Fenêtres de demande et de rupture : animation native, y compris à la fermeture. */
+:is(#editor,#history-dialog,#delete-confirm,#user-delete-confirm,#user-editor,#note-dialog,.shortage-order-confirm,.feedback-delete-confirm){
+ opacity:0;
+ transform:translateY(10px) scale(.98);
+ transition:opacity .2s ease,transform .2s ease,display .2s allow-discrete,overlay .2s allow-discrete;
+}
+:is(#editor,#history-dialog,#delete-confirm,#user-delete-confirm,#user-editor,#note-dialog,.shortage-order-confirm,.feedback-delete-confirm)[open]{opacity:1;transform:translateY(0) scale(1)}
+:is(#editor,#history-dialog,#delete-confirm,#user-delete-confirm,#user-editor,#note-dialog,.shortage-order-confirm,.feedback-delete-confirm)::backdrop{
+ background:#071c3b00;
+ transition:background-color .2s ease,display .2s allow-discrete,overlay .2s allow-discrete;
+}
+:is(#editor,#history-dialog,#delete-confirm,#user-delete-confirm,#user-editor,#note-dialog,.shortage-order-confirm,.feedback-delete-confirm)[open]::backdrop{background:var(--dialog-overlay,#071c3b99)}
+@starting-style{
+ :is(#editor,#history-dialog,#delete-confirm,#user-delete-confirm,#user-editor,#note-dialog,.shortage-order-confirm,.feedback-delete-confirm)[open]{opacity:0;transform:translateY(10px) scale(.98)}
+ :is(#editor,#history-dialog,#delete-confirm,#user-delete-confirm,#user-editor,#note-dialog,.shortage-order-confirm,.feedback-delete-confirm)[open]::backdrop{background:#071c3b00}
+}
+@media(prefers-reduced-motion:reduce){:is(#editor,#history-dialog,#delete-confirm,#user-delete-confirm,#user-editor,#note-dialog,.shortage-order-confirm,.feedback-delete-confirm),:is(#editor,#history-dialog,#delete-confirm,#user-delete-confirm,#user-editor,#note-dialog,.shortage-order-confirm,.feedback-delete-confirm)::backdrop{transition:none}}
+
+/* Sélecteur coulissant Médicament / Fourniture. */
+.type-options{position:relative;isolation:isolate}
+.type-options::before{content:'';position:absolute;z-index:0;left:4px;top:4px;bottom:4px;width:calc((100% - 12px) / 2);border:1px solid #b6cfea;border-radius:6px;background:white;box-shadow:0 2px 6px #00366d12;transition:transform .32s cubic-bezier(.22,.8,.25,1);pointer-events:none}
+.type-options:has(input[value="Fourniture"]:checked)::before{transform:translateX(calc(100% + 4px))}
+.type-options .type-option{z-index:1}
+.type-options .type-option>span,.type-options .type-option:hover>span,.type-options .type-option input:checked+span{background:transparent;border-color:transparent;box-shadow:none;transition:color .25s ease;font-weight:600}
+@media(prefers-reduced-motion:reduce){.type-options::before,.type-options .type-option>span{transition:none}}
+
+
+/* Transition de couleur uniquement pour les onglets de commandes. */
+[data-order-page],[data-shortage-page]{transition:background-color .18s ease,color .18s ease,border-color .18s ease}
+@media(prefers-reduced-motion:reduce){[data-order-page],[data-shortage-page]{transition:none}}
+
+
+/* Transition de couleur des sections du menu latéral. */
+.sidebar nav a{transition:background-color .18s ease,color .18s ease,border-color .18s ease,box-shadow .18s ease}
+@media(prefers-reduced-motion:reduce){.sidebar nav a{transition:none}}
+
+
+/* Le titre de section est porté par la barre supérieure. */
+#section-title{font-size:19px;font-weight:650;letter-spacing:-.3px;color:var(--jc-navy)}
+.intro>div{display:none}
+.intro:has(>button){justify-content:flex-end;margin-bottom:16px}
+.intro:not(:has(>button)){display:none}
+@media(max-width:760px){#section-title{font-size:16px}}
+
+
+/* Nouvelle demande sur la ligne du titre de la liste ATP. */
+.panel-title-actions{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.panel-title-actions .primary{white-space:nowrap}
+
+
+/* Actions de création à l'extrémité droite des en-têtes. */
+.panel-head:has(>#new){gap:16px;flex-wrap:wrap}
+.panel-head>#new{margin-left:auto;white-space:nowrap}
+
+
+/* Ajout d'utilisateur à droite du titre de la liste. */
+.users-panel .panel-head{gap:16px;flex-wrap:wrap}
+.users-panel #add-user{margin-left:auto;white-space:nowrap}
+
+
+/* Paramètres : trois colonnes uniformes. */
+.users-panel table{table-layout:fixed;width:100%}
+.users-panel th,.users-panel td{width:calc(100% / 3);padding-left:16px;padding-right:16px;text-align:center;white-space:normal;overflow-wrap:anywhere}
+.users-panel th:first-child,.users-panel td:first-child{text-align:left}
+.users-panel .row-actions{justify-content:center}
+
+/* Pied de page en bas de l'écran, sans recouvrir les listes. */
+.workspace{display:flex;flex-direction:column;min-height:100dvh}
+.workspace>.topbar{flex-shrink:0}
+.workspace>main{width:100%;flex:1 0 auto}
+.workspace>footer{flex-shrink:0}
+@media(max-width:760px){#app-shell{min-height:100dvh}#app-shell:not([hidden]){display:flex;flex-direction:column}.workspace{min-height:0;flex:1}}
+
+/* Barre supérieure toujours visible pendant le défilement. */
+.workspace>.topbar{position:sticky;top:0;z-index:10;background:white}
+
+
+/* En-têtes de colonnes sous la barre supérieure pendant le défilement. */
+:root{--topbar-height:76px}
+/* Le défilement horizontal reste disponible sans créer un conteneur vertical. */
+.table-wrap{overflow:visible}
+.table-wrap th{position:sticky;top:var(--topbar-height);z-index:5;background:#f3f6fb;box-shadow:0 1px 0 var(--border)}
+@media(max-width:760px){:root{--topbar-height:58px}}
+
+.panel:has(>.table-wrap){overflow:visible}
+.panel:has(>.table-wrap)>.panel-head{border-radius:9px 9px 0 0}
+@media(max-width:1150px){.panel>.table-wrap{overflow-x:auto}.panel>.table-wrap th{position:static}}
+
+
+/* Filtres et onglets restent accessibles au-dessus des en-têtes. */
+.sticky-list-controls{position:sticky;top:var(--topbar-height);z-index:7;background:white;padding-top:12px;border-bottom:1px solid var(--border)}
+.sticky-list-controls .order-pages{padding-top:0}
+.sticky-list-controls .order-pages+.toolbar{margin-top:16px}
+.panel .table-wrap th{top:calc(var(--topbar-height) + var(--list-controls-height,0px))}
+@media(max-width:1150px){.sticky-list-controls{position:static}}
+
+/* Les actions de création suivent le bloc de recherche fixe. */
+.sticky-list-controls:has(>.panel-head){padding-top:0;border-radius:9px 9px 0 0}
+.sticky-list-controls>.panel-head{background:white;border-radius:9px 9px 0 0}
+
+
+/* Vérification DIN accessible pendant le défilement sur bureau. */
+@media(min-width:1151px){
+ .split>.check-panel{position:sticky;top:calc(var(--topbar-height) + 16px);max-height:calc(100dvh - var(--topbar-height) - 32px);overflow-y:auto}
+}
+
+/* Retour discret en haut des longues listes. */
+.back-to-top{position:fixed;right:24px;bottom:24px;z-index:12;display:grid;place-items:center;width:42px;height:42px;padding:0;border:1px solid #ffffff55;border-radius:50%;background:var(--jc-blue);color:white;box-shadow:0 3px 12px #00366d30;transition:background-color .18s ease,box-shadow .18s ease}
+.back-to-top[hidden]{display:none}
+.back-to-top:hover{background:var(--jc-navy);box-shadow:0 4px 16px #00366d45}
+.back-to-top:focus-visible{outline:3px solid #8cb3dd;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.back-to-top{transition:none}}
+
+/* Apparition et disparition du bouton de retour en haut. */
+.back-to-top{opacity:1;transform:translateY(0);transition:opacity .2s ease,transform .2s ease,background-color .18s ease,box-shadow .18s ease,display .2s allow-discrete}
+.back-to-top[hidden]{opacity:0;transform:translateY(8px);pointer-events:none}
+@starting-style{.back-to-top:not([hidden]){opacity:0;transform:translateY(8px)}}
+@media(prefers-reduced-motion:reduce){.back-to-top{transition:none}}
+
+/* Fondu bref de la ligne archivée, sans retarder la sauvegarde. */
+.leaving-row-overlay{position:fixed;z-index:8;table-layout:fixed;pointer-events:none;background:white;margin:0;border-collapse:collapse}
+.leaving-row-overlay td{white-space:normal;overflow-wrap:anywhere;text-align:center;padding-left:16px;padding-right:16px}
+.leaving-row-overlay td:first-child{text-align:left}
+.leaving-row-overlay .ordered-check,.leaving-row-overlay .row-actions{justify-content:center}
+
+
+/* Regroupement visuel des demandes à traiter, sans fusionner les fiches. */
+.grouped-order{background:#edf4fc}
+.grouped-order .group-details{font-size:11px;padding:8px;white-space:normal}
+.group-request{background:#fafcff}
+.group-request[hidden]{display:none}
+.group-request-note{font-size:11px;white-space:pre-wrap;line-height:1.5;padding:8px;border-left:3px solid #b6cfea;background:white;text-align:left}
+
+/* Repli réel de la hauteur des demandes regroupées. */
+.orders-table tr.group-request>td{height:auto;padding-top:0;padding-bottom:0;vertical-align:top;border-bottom:0}
+.group-cell-content{box-sizing:border-box;overflow:hidden;padding:18px 0}
+.group-cell-content .ordered-check,.group-cell-content .row-actions{justify-content:center}
+
+
+/* Groupes : flèche pivotante et repères des notes. */
+.grouped-order .group-details{display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.group-chevron{flex:0 0 15px;transition:transform .25s ease}
+.group-details[aria-expanded=true] .group-chevron{transform:rotate(90deg)}
+.notes-indicator{display:inline-flex;align-items:center;gap:5px;margin-top:7px;padding:4px 7px;border:1px solid #c5d9ee;border-radius:5px;background:#f3f8ff;color:var(--jc-blue);font-size:10px;line-height:1.4}
+.notes-indicator svg{flex-shrink:0}
+@media(prefers-reduced-motion:reduce){.group-chevron{transition:none}}
+
+/* Accès direct aux notes du groupe. */
+button.notes-indicator{cursor:pointer;font-family:inherit;text-align:left;transition:background-color .18s ease,border-color .18s ease}
+button.notes-indicator:hover{background:#dcecff;border-color:#8cb3dd}
+button.notes-indicator:focus-visible{outline:2px solid var(--jc-blue);outline-offset:3px}
+
+
+#note-dialog{width:min(560px,calc(100% - 30px))}
+#note-content{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.7;font-size:14px;max-height:55dvh;overflow-y:auto}
+
+.group-note-entry{padding:14px 0;white-space:normal}
+.group-note-entry+.group-note-entry{border-top:1px solid var(--border)}
+.group-note-entry h3{font-size:11px;color:var(--muted);font-weight:600}
+.group-note-entry p{white-space:pre-wrap;margin:8px 0 0;line-height:1.7}
+
+
+.note-product{margin:0 0 16px;padding:12px 14px;border-radius:7px;background:var(--jc-pale);color:var(--jc-navy);font-weight:600;line-height:1.5;overflow-wrap:anywhere}
+
+
+#cloud-message{margin:0;padding:10px 38px;color:var(--jc-red);background:#fff3f3;font-size:12px;position:sticky;top:76px;z-index:11}
+#cloud-message:empty{display:none}
+#cloud-status[data-kind=error]{background:#fff0f0;color:var(--jc-red)}
+#cloud-status[data-kind=online]{background:#edf7ef;color:#28653a}
+[hidden]{display:none!important}
+
+#login-mode{display:block;margin:14px auto 0;font-size:12px}
+#login-identifier[type=text]{text-transform:uppercase;letter-spacing:1px}
+
+
+.user-form-grid label:has(input[type=password]),.user-form-grid label:has(input[name=uid]){grid-column:1/-1}
+.existing-user-option{display:flex;align-items:center;gap:8px;margin-top:16px;font-size:12px;color:var(--muted)}
+.existing-user-option input{width:auto}
+
+
+.idle-warning{margin:0;padding:10px 38px;background:#fff4df;color:#805419;font-size:12px}
+
+.archive-controls{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 20px;border-top:1px solid var(--border);flex-wrap:wrap}
+.archive-controls small{color:var(--muted);font-size:11px}
+.idle-warning{position:fixed;bottom:20px;left:100px;right:80px;z-index:25;border:1px solid #e2bc70;border-radius:8px;box-shadow:0 3px 14px #173d3c20}
+
+.backup-panel{margin-top:20px}.backup-dialog{width:min(560px,calc(100vw - 32px));border:1px solid #dce4ef;border-radius:16px;padding:28px;color:#12304d}.backup-dialog::backdrop{background:#071b3480}.backup-dialog label{display:block;margin:18px 0 8px;font-weight:600}.backup-dialog input{display:block;width:100%;margin-top:8px}.backup-dialog p{line-height:1.5}.backup-dialog .actions{margin-top:20px}.backup-result{overflow-wrap:anywhere}
+
+/* La bordure de la sélection reste comprise dans sa demi-largeur. */
+.type-options::before{box-sizing:border-box}
+
+/* Réserver la hauteur de la légende après le pied de page, y compris sur mobile. */
+#app-shell .workspace:has(#main>.pinned-legend)>footer{display:none}
+#app-shell .workspace>#main:has(>.pinned-legend){padding-bottom:calc(var(--legend-height,100px) + 6px)}
+
+
+/* Pied de page discret : une ligne compacte sans espace supplémentaire. */
+#app-shell .workspace>footer{padding:5px 0;gap:4px 10px;line-height:1.3;font-size:9px;min-height:0}
+#app-shell .workspace>footer::after{max-height:12px;max-width:70px}
+#app-shell .workspace>footer .text-button{padding:0 4px;font-size:9px}
+@media(max-width:760px){#app-shell .workspace>footer{margin-left:12px;margin-right:12px;column-gap:8px;font-size:8px}}
+
+/* Identification intégrée à la légende, sans pied de page supplémentaire. */
+#main>.pinned-legend>.legend-footer{font-size:8px;line-height:1.3;color:var(--muted);white-space:normal;text-align:center;letter-spacing:0;flex:0 1 auto;border-left:1px solid var(--border);padding-left:10px;margin-left:2px}
+@media(max-width:760px){#main>.pinned-legend>.legend-footer{grid-column:1/-1;font-size:7px;line-height:1.2;border-left:0;border-top:1px solid var(--border);margin-left:0;padding:3px 0 0}}
+
+/* Avertissements personnalisés : indépendants des couleurs des statuts. */
+:root[data-theme=light][data-profile-palette="charcoal-red"]{--profile-alert-bg:#fff0f0;--profile-alert-ink:#a51414;--profile-alert-line:#dc7777;--profile-alert-action:#c91b1b}
+:root[data-theme=dark][data-profile-palette="charcoal-red"]{--profile-alert-bg:#3b1c1c;--profile-alert-ink:#ffb5b5;--profile-alert-line:#a83c3c;--profile-alert-action:#b91c1c}
+:root[data-theme=light][data-profile-palette="sky-blue"]{--profile-alert-bg:#e5f6ff;--profile-alert-ink:#075d8c;--profile-alert-line:#68b9dd;--profile-alert-action:#086ea5}
+:root[data-theme=dark][data-profile-palette="sky-blue"]{--profile-alert-bg:#133749;--profile-alert-ink:#b6e8ff;--profile-alert-line:#3b8bb0;--profile-alert-action:#086ea5}
+:root[data-theme=light][data-profile-palette="neon-pink"]{--profile-alert-bg:#fff0f8;--profile-alert-ink:#a51665;--profile-alert-line:#e38abf;--profile-alert-action:#b31a70}
+:root[data-theme=dark][data-profile-palette="neon-pink"]{--profile-alert-bg:#421c35;--profile-alert-ink:#ffc1e5;--profile-alert-line:#a84d85;--profile-alert-action:#a81868}
+:root[data-theme=light][data-profile-palette="lilac"]{--profile-alert-bg:#f3edff;--profile-alert-ink:#673399;--profile-alert-line:#af8acf;--profile-alert-action:#7445a3}
+:root[data-theme=dark][data-profile-palette="lilac"]{--profile-alert-bg:#30233f;--profile-alert-ink:#e1c9ff;--profile-alert-line:#8760ac;--profile-alert-action:#7545a4}
+:root[data-theme=light][data-profile-palette="forest-black"]{--profile-alert-bg:#e7f4ec;--profile-alert-ink:#195c39;--profile-alert-line:#75ac8a;--profile-alert-action:#21643e}
+:root[data-theme=dark][data-profile-palette="forest-black"]{--profile-alert-bg:#172f24;--profile-alert-ink:#c0ebd0;--profile-alert-line:#4a8460;--profile-alert-action:#286a45}
+:root[data-theme=light][data-profile-palette="banana-yellow"]{--profile-alert-bg:#fff8dc;--profile-alert-ink:#735100;--profile-alert-line:#e3bc43;--profile-alert-action:#bd8500}
+:root[data-theme=dark][data-profile-palette="banana-yellow"]{--profile-alert-bg:#403519;--profile-alert-ink:#ffe38f;--profile-alert-line:#96752a;--profile-alert-action:#ac8005}
+:root[data-profile-palette]:is([data-profile-palette="charcoal-red"],[data-profile-palette="sky-blue"],[data-profile-palette="neon-pink"],[data-profile-palette="lilac"],[data-profile-palette="forest-black"],[data-profile-palette="banana-yellow"],[data-profile-palette="lime-green"],[data-profile-palette="cool-violet"]) :is(#app-shell,dialog) :is(.confirm-icon,.shortage-order-confirm .confirm-record,.idle-warning){background:var(--profile-alert-bg);color:var(--profile-alert-ink);border-color:var(--profile-alert-line)}
+:root[data-profile-palette]:is([data-profile-palette="charcoal-red"],[data-profile-palette="sky-blue"],[data-profile-palette="neon-pink"],[data-profile-palette="lilac"],[data-profile-palette="forest-black"],[data-profile-palette="banana-yellow"],[data-profile-palette="lime-green"],[data-profile-palette="cool-violet"]) #cloud-message{background:var(--profile-alert-bg);color:var(--profile-alert-ink);border-color:var(--profile-alert-line);box-shadow:none}
+:root[data-profile-palette]:is([data-profile-palette="charcoal-red"],[data-profile-palette="sky-blue"],[data-profile-palette="neon-pink"],[data-profile-palette="lilac"],[data-profile-palette="forest-black"],[data-profile-palette="banana-yellow"],[data-profile-palette="lime-green"],[data-profile-palette="cool-violet"]) :is(#app-shell,dialog) :is(.error,.shortage-order-confirm h2,.shortage-order-return){color:var(--profile-alert-ink)}
+:root[data-profile-palette]:is([data-profile-palette="charcoal-red"],[data-profile-palette="sky-blue"],[data-profile-palette="neon-pink"],[data-profile-palette="lilac"],[data-profile-palette="forest-black"],[data-profile-palette="banana-yellow"],[data-profile-palette="lime-green"],[data-profile-palette="cool-violet"]) :is(#cloud-status,.local-pill)[data-kind=error]{background:var(--profile-alert-bg);color:var(--profile-alert-ink);border-color:var(--profile-alert-line)}
+:root[data-profile-palette]:is([data-profile-palette="charcoal-red"],[data-profile-palette="sky-blue"],[data-profile-palette="neon-pink"],[data-profile-palette="lilac"],[data-profile-palette="forest-black"],[data-profile-palette="banana-yellow"],[data-profile-palette="lime-green"],[data-profile-palette="cool-violet"]) :is(#app-shell,dialog) :is(.delete-primary,.danger-button,.inventory-adjust-confirm button[data-confirm]){background:var(--create-gradient,var(--profile-alert-action));color:var(--create-ink,#fff);border:1px solid var(--create-edge,var(--profile-alert-line))}
+:root[data-profile-palette]:is([data-profile-palette="charcoal-red"],[data-profile-palette="sky-blue"],[data-profile-palette="neon-pink"],[data-profile-palette="lilac"],[data-profile-palette="forest-black"],[data-profile-palette="banana-yellow"],[data-profile-palette="lime-green"],[data-profile-palette="cool-violet"]) :is(#app-shell,dialog) :is(.delete-primary,.danger-button,.inventory-adjust-confirm button[data-confirm]):hover{background:var(--create-gradient,var(--profile-alert-action));color:var(--create-ink,#fff);filter:brightness(1.1)}
+
+/* Poubelles des listes : accents du profil, sans changer les autres actions. */
+:root[data-profile-palette]:is([data-profile-palette="charcoal-red"],[data-profile-palette="sky-blue"],[data-profile-palette="neon-pink"],[data-profile-palette="lilac"],[data-profile-palette="forest-black"],[data-profile-palette="banana-yellow"],[data-profile-palette="lime-green"],[data-profile-palette="cool-violet"]) :is(#app-shell,dialog) button.trash-button:not(:disabled){color:var(--jc-blue);border-color:transparent;transition:color .16s ease,background-color .16s ease,border-color .16s ease}
+:root[data-profile-palette]:is([data-profile-palette="charcoal-red"],[data-profile-palette="sky-blue"],[data-profile-palette="neon-pink"],[data-profile-palette="lilac"],[data-profile-palette="forest-black"],[data-profile-palette="banana-yellow"],[data-profile-palette="lime-green"],[data-profile-palette="cool-violet"]) :is(#app-shell,dialog) button.trash-button:is(:hover,:focus-visible):not(:disabled){color:var(--profile-alert-ink);background:var(--profile-alert-bg);border-color:var(--profile-alert-line)}
+:root[data-profile-palette]:is([data-profile-palette="charcoal-red"],[data-profile-palette="sky-blue"],[data-profile-palette="neon-pink"],[data-profile-palette="lilac"],[data-profile-palette="forest-black"],[data-profile-palette="banana-yellow"],[data-profile-palette="lime-green"],[data-profile-palette="cool-violet"]) :is(#app-shell,dialog) button.trash-button.feedback-trash:not(:disabled){background:var(--profile-soft,var(--surface));border-color:var(--profile-divider,var(--border))}
+:root[data-profile-palette]:is([data-profile-palette="charcoal-red"],[data-profile-palette="sky-blue"],[data-profile-palette="neon-pink"],[data-profile-palette="lilac"],[data-profile-palette="forest-black"],[data-profile-palette="banana-yellow"],[data-profile-palette="lime-green"],[data-profile-palette="cool-violet"]) :is(#app-shell,dialog) button.trash-button.feedback-trash:is(:hover,:focus-visible):not(:disabled){background:var(--profile-alert-bg);border-color:var(--profile-alert-line)}
