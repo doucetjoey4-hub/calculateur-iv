@@ -1,3 +1,5 @@
+import {usesRamqProfit} from './calculs.mjs?v=1.8';
+
 // Coordinates in PDF points measured on the unchanged 612 x 792 source.
 export async function makePdf(s,r,products){
  const {PDFDocument,StandardFonts,rgb}=globalThis.PDFLib;
@@ -20,7 +22,7 @@ export async function makePdf(s,r,products){
   n(s.insurance==='private'?r.price:null,198);n(s.insurance==='private'?r.price:null,231.4);
   n(s.insurance==='private'?r.net:null,242.6);n(s.insurance==='private'&&r.f6>=0?r.f6:null,253.8);
   n(r.fe,287.3);n(r.ft,298.4);n(r.rxTotal,320);
-  text(s.insurance==='private'?num(r.profit):'',60,344+o,52,8);
+  text(s.insurance==='private'||usesRamqProfit(s)?num(r.profit):'',60,344+o,52,8);
   for(const [j,key]of ['nacl','heparin'].entries())if(s[key+'Enabled']){
     text(num(products[key].cost),j?508:378,287.8+o,60,7);
     // Original "Marge %" row: divisor expressed as a percentage, as in the printed chart.
