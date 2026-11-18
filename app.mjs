@@ -6,6 +6,7 @@ const checklist=['Consentement du patient documenté dans RxPro.','Assurance vé
 $('#checks').innerHTML=checklist.map((s,i)=>`<label class="check ordered-check"><input type="checkbox" name="check${i}">${s}</label>`).join('');
 $('#blanchetteProducts').innerHTML=['nacl','heparin'].map((k,i)=>`<div class="product"><label class="check ordered-check"><input type="checkbox" name="${k}Enabled">${i?'Héparine':'NaCl'} · produit commandé</label><fieldset id="${k}Fields" disabled><div class="fields form-grid"><label>Prix coûtant<div class="amount"><input name="${k}Cost" inputmode="decimal" placeholder="0,00"><span>$</span></div></label><div class="computed"><span>Diviseur automatique</span><strong id="${k}Divisor">—</strong><small>Selon la charte de l’antibiotique</small></div></div><div class="calculation soft"><span>Prix total<small id="${k}Formula">Saisissez un prix coûtant</small></span><strong id="${k}Total">—</strong></div><p id="${k}Warning" class="warning" hidden>Coûtant invalide : vérifiez le montant saisi.</p></fieldset></div>`).join('');
 let state,result,products,summaryText='',dirty=false,blobUrl=null,busy=false;
+let productsConfirmed=false;
 function values(){
  const s=Object.fromEntries(new FormData(form));
  for(const el of form.querySelectorAll('[type=checkbox]:not([data-product-choice])'))s[el.name]=el.checked;
@@ -21,6 +22,7 @@ const amountNames=['magistral','cost','net','fe','ft','rxTotal','naclCost','hepa
 function dateToday(){const now=new Date();const date=form.elements.date;date.value=[now.getFullYear(),String(now.getMonth()+1).padStart(2,'0'),String(now.getDate()).padStart(2,'0')].join('-');date.dispatchEvent(new Event('change'));}
 function read(){
  const s=values();
+ if(state?.orderType!==s.orderType)productsConfirmed=false;
  $('#orderDetails').hidden=!s.orderType;
  const isGentes=s.orderType==='magistrale';
  const ramq=s.insurance==='ramq', ramqProfit=usesRamqProfit(s);
@@ -82,16 +84,25 @@ function renderSummary(){
 let toastTimer;function toast(msg){$('#toast').textContent=msg;$('#toast').classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('#toast').classList.remove('visible'),6000);}
 form.addEventListener('input',e=>{
  if(e.target.matches('[data-product-choice]')){
-  if(e.target.checked)for(const choice of form.querySelectorAll('[data-product-choice]'))if(choice.name===e.target.name&&choice!==e.target)choice.checked=false;
-  const key=e.target.name==='rinse'?'nacl':'heparin';
-  const linkedValue=key==='nacl'?'NaCl pharmacie préparatrice':'Héparine pharmacie préparatrice';
-  form.elements[key+'Enabled'].checked=Array.from(form.querySelectorAll('[data-product-choice]')).some(choice=>choice.name===e.target.name&&choice.value===linkedValue&&choice.checked);
+  const selected=e.target;
+  if (selected.checked) {
+    for (const choice of form.elements[selected.name]) {
+      if (choice !== selected) choice.checked = false;
+    }
+    productsConfirmed = false;
+    const key=selected.name==='rinse'?'nacl':'heparin';
+    const linkedValue=key==='nacl'?'NaCl pharmacie préparatrice':'Héparine pharmacie préparatrice';
+    form.elements[key+'Enabled'].checked=selected.value===linkedValue;
+  } else {
+    selected.checked = true;
+  }
  }
  dirty=true;read();
 });form.addEventListener('change',()=>{dirty=true;read();});form.addEventListener('submit',e=>e.preventDefault());
 const resetConfirm = $('#resetConfirm');
 function resetCalculation() {
   form.reset();
+  productsConfirmed = false;
   dateToday();
   dirty = false;
   read();
@@ -115,11 +126,33 @@ resetConfirm.addEventListener('keydown', event => {
   if (!event.repeat) $('#resetAccept').click();
 });
 $('#copy').onclick=async()=>{try{await navigator.clipboard.writeText(summaryText);toast('Résumé copié.');}catch{const t=document.createElement('textarea');t.value=summaryText;document.body.append(t);t.select();const ok=document.execCommand('copy');t.remove();toast(ok?'Résumé copié.':'Copie indisponible dans ce navigateur.');}};
+const productsConfirm = $('#productsConfirm');
+let pendingDocumentAction;
+productsConfirm.addEventListener('close', () => {
+  const action = pendingDocumentAction;
+  pendingDocumentAction = undefined;
+  if (productsConfirm.returnValue !== 'confirm' || !action) return;
+  productsConfirmed = true;
+  generate(action);
+});
 async function generate(action){
- if(busy)return;read();const invalid=form.querySelector('[aria-invalid=true]');if(invalid){invalid.focus();toast('Corrigez les montants invalides avant de générer le PDF.');return;}
+ if(busy||productsConfirm.open)return;read();const invalid=form.querySelector('[aria-invalid=true]');if(invalid){invalid.focus();toast('Corrigez les montants invalides avant de générer le PDF.');return;}
  if(result.f6!==null&&result.f6<0){toast('Corrigez le résultat F6 négatif avant de générer le formulaire.');return;}
  if(state.insurance==='private'&&valid(result.cost)&&!result.d){toast('Vérifiez le prix coûtant avant de générer le PDF.');return;}
  for(const k of ['nacl','heparin'])if(state[k+'Enabled']&&valid(products[k].cost)&&!products[k].d){toast('Blanchette : vérifiez le prix coûtant avant de générer le PDF.');return;}
+ if(state.orderType==='iv'&&!productsConfirmed){
+  const notApplicable='N/A avec cette préparation';
+  const sections=[];
+  if(state.rinse===notApplicable)sections.push('Solution de rinçage');
+  if(state.anticoag===notApplicable)sections.push('Anticoagulant');
+  if(sections.length){
+   $('#productsConfirmDescription').textContent='Confirmez « N/A avec cette préparation » pour : '+sections.join(' et ')+'.';
+   pendingDocumentAction=action;
+   productsConfirm.returnValue='';
+   productsConfirm.showModal();
+   return;
+  }
+ }
  busy=true;for(const id of ['preview','download','print'])$('#'+id).disabled=true;
  try{
  const bytes=await makePdf(state,result,products);if(blobUrl)URL.revokeObjectURL(blobUrl);blobUrl=URL.createObjectURL(new Blob([bytes],{type:'application/pdf'}));
