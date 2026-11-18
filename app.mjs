@@ -1,5 +1,5 @@
 import {cents,valid,calculate,blanchette,money,usesRamqProfit} from './calculs.mjs?v=1.8';
-import {makePdf} from './pdf.mjs?v=1.8';
+import {makePdf} from './pdf.mjs?v=1.9';
 const $=s=>document.querySelector(s),form=$('#form');
 const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const checklist=['Consentement du patient documenté dans RxPro.','Assurance vérifiée.','Couverture confirmée avant la commande.','Validation clinique effectuée par le pharmacien.','Coûtants corrigés dans RxPro si nécessaire.','Date de péremption vérifiée.','Emballage et étiquetage vérifiés.','Tampons alcoolisés ajoutés selon la quantité de produits servis à l’interne.','Autorisation de l’assurance privée documentée lorsque nécessaire.'];
@@ -122,8 +122,7 @@ async function generate(action){
  for(const k of ['nacl','heparin'])if(state[k+'Enabled']&&valid(products[k].cost)&&!products[k].d){toast('Blanchette : vérifiez le prix coûtant avant de générer le PDF.');return;}
  busy=true;for(const id of ['preview','download','print'])$('#'+id).disabled=true;
  try{
- const pdfState=action==='print'?{...state,includeProcedure:true}:state;
- const bytes=await makePdf(pdfState,result,products);if(blobUrl)URL.revokeObjectURL(blobUrl);blobUrl=URL.createObjectURL(new Blob([bytes],{type:'application/pdf'}));
+ const bytes=await makePdf(state,result,products);if(blobUrl)URL.revokeObjectURL(blobUrl);blobUrl=URL.createObjectURL(new Blob([bytes],{type:'application/pdf'}));
  if(action==='download'){const a=document.createElement('a');a.href=blobUrl;a.download=`reclamation-IV-${state.date||'calcul'}.pdf`;a.click();toast('PDF téléchargé.');}
  else if(action==='print'){
   // Render the actual filled PDF at 300 dpi. This avoids depending on a browser PDF plug-in.
@@ -136,7 +135,7 @@ async function generate(action){
   await Promise.all(Array.from(frame.contentDocument.images).map(img=>img.decode()));
   try{frame.contentWindow.focus();frame.contentWindow.print();toast('Impression demandée. Sélectionnez A4 et recto verso sur le bord long dans la boîte d’impression.');}catch{toast('Impression indisponible dans ce navigateur. Téléchargez le PDF pour imprimer.');}
  }else{
-  $('#pdfDialog').showModal();$('#pdfStatus').textContent=`${state.includeProcedure?'2 pages':'1 page · procédure exclue'} · résultats reportés automatiquement`;
+  $('#pdfDialog').showModal();$('#pdfStatus').textContent=`2 pages · formulaire et procédure · résultats reportés automatiquement`;
   $('#pdfPages').textContent='Chargement de l’aperçu…';const pdfjs=await import('./vendor/pdfjs.mjs');pdfjs.GlobalWorkerOptions.workerSrc=new URL('./vendor/pdf.worker.mjs',import.meta.url).href;
   const pdf=await pdfjs.getDocument({data:bytes}).promise;$('#pdfPages').replaceChildren();for(let n=1;n<=pdf.numPages;n++){const page=await pdf.getPage(n),viewport=page.getViewport({scale:1.5}),canvas=document.createElement('canvas');canvas.width=viewport.width;canvas.height=viewport.height;canvas.setAttribute('aria-label',`Page ${n} du formulaire rempli`);$('#pdfPages').append(canvas);await page.render({canvasContext:canvas.getContext('2d'),viewport}).promise;}
  }

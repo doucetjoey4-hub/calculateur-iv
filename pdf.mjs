@@ -5,7 +5,7 @@ export async function makePdf(s,r,products){
  const {PDFDocument,StandardFonts,rgb}=globalThis.PDFLib;
  const original=await fetch('formulaire-officiel.pdf'); if(!original.ok)throw Error('Gabarit PDF indisponible');
  const src=await PDFDocument.load(await original.arrayBuffer());const doc=await PDFDocument.create();
- const pages=await doc.copyPages(src,s.includeProcedure?[0,1]:[0]); pages.forEach(p=>doc.addPage(p));
+ const pages=await doc.copyPages(src,[0,1]); pages.forEach(p=>doc.addPage(p));
  const p=pages[0],font=await doc.embedFont(StandardFonts.Helvetica);
  const text=(v,x,top,max=53,size=8)=>{if(v===null||v===undefined||v==='')return;v=String(v).normalize('NFC').replace(/[^\u0020-\u00ff]/g,' ');while(font.widthOfTextAtSize(v,size)>max&&size>5)size-=.2;if(font.widthOfTextAtSize(v,size)>max)throw Error('Texte trop long pour le formulaire');p.drawText(v,{x,y:792-top-font.heightAtSize(size,{descender:false}),font,size,color:rgb(0,.1,.2)});};
  const num=n=>Number.isFinite(n)?(n/100).toFixed(2).replace('.',','):'';
