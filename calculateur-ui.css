@@ -121,6 +121,9 @@
   #main .intro { flex-wrap: wrap; gap: 12px; }
   #main .calculator-switch .order-page { min-height: 42px; }
   #form .panel > .panel-head { padding-inline: 16px; }
+  #form .panel-heading { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 2px 8px; }
+  #form .panel-heading-icon { display: grid; }
+  #form .panel-heading-icon svg { width: 19px; height: 19px; }
   .calculator-panel-body { padding: 0 16px 16px; }
 }
 @media (max-width: 540px) {
