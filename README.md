@@ -40,6 +40,6 @@ Identité visuelle adaptée des styles publics de https://portail-commande.web.a
 
 La liste affichée des règles à faire valider ne contient que les points encore en attente. Les paliers, l’arrondi et la charte Blanchette ont été retirés après confirmation. La ligne d’acceptation administrative disparaît lorsque sa case de validation est cochée pour le calcul en cours.
 
-Rinçage et anticoagulant : cases à cocher avec un seul choix par groupe, y compris N/A; possibilité de décocher pour laisser le groupe sans choix. Les champs d’approvisionnement et leurs lignes du résumé sont retirés. Les produits restent reportés dans les cases correspondantes des deux exemplaires du PDF.
+Rinçage et anticoagulant : un seul choix par groupe, avec « N/A avec cette préparation » sélectionné par défaut. Les choix N/A sont confirmés avant de générer le formulaire. Les champs d’approvisionnement et leurs lignes du résumé sont retirés. Les produits restent reportés dans les cases correspondantes des deux exemplaires du PDF.
 
 Les choix NaCl pharmacie préparatrice et Héparine pharmacie préparatrice activent automatiquement les calculs Blanchette correspondants. Décocher le choix ou sélectionner un autre produit du même groupe désactive le calcul associé, sans effacer son coûtant saisi. Les deux groupes restent indépendants.
