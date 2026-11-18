@@ -7,12 +7,15 @@ $('#checks').innerHTML=checklist.map((s,i)=>`<label class="check ordered-check">
 $('#blanchetteProducts').innerHTML=['nacl','heparin'].map((k,i)=>`<div class="product"><label class="check ordered-check"><input type="checkbox" name="${k}Enabled">${i?'Héparine':'NaCl'} · produit commandé</label><fieldset id="${k}Fields" disabled><div class="fields form-grid"><label>Prix coûtant<div class="amount"><input name="${k}Cost" inputmode="decimal" placeholder="0,00"><span>$</span></div></label><div class="computed"><span>Diviseur automatique</span><strong id="${k}Divisor">—</strong><small>Selon la charte de l’antibiotique</small></div></div><div class="calculation soft"><span>Prix total<small id="${k}Formula">Saisissez un prix coûtant</small></span><strong id="${k}Total">—</strong></div><p id="${k}Warning" class="warning" hidden>Coûtant invalide : vérifiez le montant saisi.</p></fieldset></div>`).join('');
 let state,result,products,summaryText='',dirty=false,blobUrl=null,busy=false;
 let productsConfirmed=false;
-const productSelections = new Map();
 const notApplicable='N/A avec cette préparation';
 const defaultsToNA=orderType=>orderType==='magistrale'||orderType==='other';
 function values(){
  const s=Object.fromEntries(new FormData(form));
  for(const el of form.querySelectorAll('[type=checkbox]:not([data-product-choice])'))s[el.name]=el.checked;
+ if(defaultsToNA(s.orderType)){
+  s.rinse=notApplicable;
+  s.anticoag=notApplicable;
+ }
  if(s.orderType!=='iv'){
 
   s.naclEnabled=false;
@@ -24,15 +27,7 @@ const amountNames=['magistral','cost','net','fe','ft','rxTotal','naclCost','hepa
 function dateToday(){const now=new Date();const date=form.elements.date;date.value=[now.getFullYear(),String(now.getMonth()+1).padStart(2,'0'),String(now.getDate()).padStart(2,'0')].join('-');date.dispatchEvent(new Event('change'));}
 function read(){
  const s=values();
- if(state?.orderType!==s.orderType){
-  if(state?.orderType)productSelections.set(state.orderType,{rinse:state.rinse??'',anticoag:state.anticoag??''});
-  const previous=productSelections.get(s.orderType);
-  const initial=defaultsToNA(s.orderType)?notApplicable:'';
-  for(const choice of form.querySelectorAll('[data-product-choice]')){
-   choice.checked=choice.value===(previous?.[choice.name]??initial);
-  }
-  productsConfirmed=false;
- }
+ if(state?.orderType!==s.orderType)productsConfirmed=false;
  $('#orderDetails').hidden=!s.orderType;
  const isGentes=s.orderType==='magistrale';
  const ramq=s.insurance==='ramq', ramqProfit=usesRamqProfit(s);
@@ -42,7 +37,8 @@ function read(){
  }
  $('#orderSelection').textContent=s.orderType?form.elements.orderType.selectedOptions[0].textContent:'';
  for(const link of document.querySelectorAll('nav a:not([href="#commande"])'))link.hidden=!s.orderType;
- $('#produits').hidden=!s.orderType;
+ $('#produits').hidden=s.orderType!=='iv';
+ $('nav a[href="#produits"]').hidden=s.orderType!=='iv';
  $('#blanchette').hidden=s.orderType!=='iv';
  $('nav a[href="#blanchette"]').hidden=s.orderType!=='iv';
  const privateFields=$('#privateFields');
@@ -86,7 +82,7 @@ function renderSummary(){
  h+='<div class="summary-group"><small>'+escape(pending.toUpperCase())+'</small>';
  if(s.insurance==='private')h+=row('Diviseur',r.d?(r.d/100).toFixed(2).replace('.',','):'Non déterminé')+row('Prix à facturer',money(r.price))+`<div class="summary-result">${row('Frais additionnels F6',money(r.f6))}</div>`;
  else h+=row('Prix privé / F6','N/A RAMQ');h+=row('Sous-total FE + FT',money(r.fees))+row('Profit',profitLabel(s,r.profit),usesRamqProfit(s)&&r.profit<0)+'</div>';
- if(s.orderType)h+='<div class="summary-group"><small>PRODUITS ASSOCIÉS</small>'+row('Rinçage',s.rinse||'À préciser')+row('Anticoagulant',s.anticoag||'À préciser')+'</div>';
+ if(s.orderType==='iv')h+='<div class="summary-group"><small>PRODUITS ASSOCIÉS</small>'+row('Rinçage',s.rinse||'À préciser')+row('Anticoagulant',s.anticoag||'À préciser')+'</div>';
  for(const k of ['nacl','heparin'])if(s[k+'Enabled'])h+='<div class="summary-group">'+row('Blanchette · '+(k==='nacl'?'NaCl':'Héparine'),money(products[k].total))+row('Coût saisi',money(products[k].cost))+row('Diviseur automatique',products[k].d?(products[k].d/100).toFixed(2).replace('.',','):'Non déterminé')+row('Statut',!products[k].d?'Coûtant absent ou invalide':pending)+'</div>';
  $('#summary').innerHTML=h;summaryText='FACTURATION IV\n'+rows.map(([a,b])=>`${a} : ${b}`).join('\n')+'\nArrondi : '+'au cent le plus proche · règle confirmée'+'\nVérifications : '+checklist.map((v,i)=>`\n[${s['check'+i]?'x':' '}] ${v}`).join('');
 }
@@ -99,8 +95,6 @@ form.addEventListener('input',e=>{
       if (choice !== selected) choice.checked = false;
     }
     productsConfirmed = false;
-  } else if (defaultsToNA(state.orderType)) {
-    selected.checked = true;
   }
   if (state.orderType==='iv') {
     const key=selected.name==='rinse'?'nacl':'heparin';
@@ -113,8 +107,6 @@ form.addEventListener('input',e=>{
 const resetConfirm = $('#resetConfirm');
 function resetCalculation() {
   form.reset();
-  productSelections.clear();
-  state=undefined;
   productsConfirmed = false;
   dateToday();
   dirty = false;
