@@ -8,3 +8,18 @@ test('FE et FT sans estimation du total Rx',()=>{assert.equal(calculate({fe:'12,
 test('profit = prix à facturer arrondi moins coûtant, indépendant des frais et du NET PATIENT',()=>{assert.equal(calculate({insurance:'private',cost:'400',net:'500',fe:'12',ft:'5'}).profit,21538);assert.equal(calculate({insurance:'private',cost:'400',net:'0',fe:'100',ft:'80'}).profit,21538);assert.equal(calculate({insurance:'private',cost:'0'}).profit,0);assert.equal(calculate({insurance:'private',cost:''}).profit,null);assert.equal(calculate({insurance:'private',cost:'abc'}).profit,null);assert.equal(calculate({insurance:'ramq',cost:'400'}).profit,null);});
 test('Blanchette applique exactement les paliers de la charte antibiotique',()=>{for(const cost of ['0','100','400','500','501','600','750','751','900','9999999.99']){const p=blanchette(cost),a=calculate({insurance:'private',cost});assert.equal(p.d,a.d);assert.equal(p.total,a.price);}assert.equal(blanchette('400').total,61538);assert.equal(blanchette('600').total,85714);assert.equal(blanchette('900').total,125000);});
 test('Blanchette suspend les coûtants absents ou invalides',()=>{for(const cost of ['','-1','abc','1.234']){assert.equal(blanchette(cost).d,null);assert.equal(blanchette(cost).total,null);}});
+
+test('Profit Uniprix RAMQ : total Rx réel moins coûtant, frais déjà inclus', () => {
+  const s = {orderType:'iv', insurance:'ramq', cost:'400', rxTotal:'550', fe:'12', ft:'9'};
+  assert.equal(calculate(s).profit, 15000);
+  assert.equal(calculate(s).price, null);
+  assert.equal(calculate(s).f6, null);
+  assert.equal(calculate({...s, rxTotal:'399,99'}).profit, -1);
+  assert.equal(calculate({...s, rxTotal:'0', cost:'0'}).profit, 0);
+  for (const missing of ['', 'abc']) {
+    assert.equal(calculate({...s, rxTotal:missing}).profit, null);
+    assert.equal(calculate({...s, cost:missing}).profit, null);
+  }
+  for (const orderType of ['', 'magistrale', 'other']) assert.equal(calculate({...s, orderType}).profit, null);
+  assert.equal(calculate({...s, insurance:'private'}).profit, 21538);
+});

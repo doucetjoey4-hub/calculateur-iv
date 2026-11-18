@@ -47,6 +47,8 @@
 .field-error { color: var(--red); font-size: 11px; }
 .optional, .hint, .computed small, .calculation small, .step-title .tag { color: var(--muted); }
 .optional { font-weight: 400; }
+.negative-profit { color: #ae2638; }
+:root[data-theme=dark] .negative-profit { color: #ff9aa9; }
 .hint { font-size: 12px; line-height: 1.6; margin-top: 12px; }
 .amount { position: relative; min-width: 0; }
 .amount input { padding-right: 32px; }

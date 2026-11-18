@@ -14,3 +14,14 @@ test('PDF reporte les résultats sur deux exemplaires sans mention provisoire',a
 test('PDF validé sans mention provisoire, RAMQ sans résultats privés',async()=>{
  drawn=[];await makePdf({insurance:'ramq',roundingConfirmed:true},r,{});assert.equal(drawn.filter(x=>x.text.includes('CALCUL PROVISOIRE')).length,0);assert.equal(drawn.filter(x=>x.text==='615,38'||x.text==='115,38'||x.text==='215,38').length,0);assert.equal(drawn.filter(x=>x.text==='633,13').length,2);
 });
+
+test('PDF reporte le profit Uniprix RAMQ sur les deux exemplaires, avec procédures au verso sur demande', async () => {
+  const state={insurance:'ramq',orderType:'iv',includeProcedure:true};
+  for (const profit of [15000,-15000]) {
+    drawn=[];
+    const output=await makePdf(state,{...r,profit},{});
+    assert.equal((await PDFLib.PDFDocument.load(output)).getPageCount(),2);
+    assert.deepEqual(drawn.filter(x=>x.x===60).map(x=>x.text),Array(2).fill(profit>0?'150,00':'-150,00'));
+    assert.equal(drawn.some(x=>x.text==='615,38'||x.text==='115,38'),false);
+  }
+});

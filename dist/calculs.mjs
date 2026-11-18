@@ -13,11 +13,14 @@ export function divisor(c) {
   return null;
 }
 export function divideRound(n,d){return Math.floor((n+Math.floor(d/2))/d);}
+export const usesRamqProfit=s=>s.orderType==='iv'&&s.insurance==='ramq';
 export function calculate(s){
   const cost=cents(s.cost), net=cents(s.net), d=s.insurance==='private'?divisor(cost):null;
   const price=d?divideRound(cost*100,d):null;
   const f6=price!==null&&valid(net)?price-net:null;
-  return {cost,net,d,price,f6,profit:price!==null&&valid(cost)?price-cost:null,fees:valid(cents(s.fe))&&valid(cents(s.ft))?cents(s.fe)+cents(s.ft):null};
+  const profitBase=usesRamqProfit(s)?cents(s.rxTotal):price;
+  const profit=valid(profitBase)&&valid(cost)?profitBase-cost:null;
+  return {cost,net,d,price,f6,profit,fees:valid(cents(s.fe))&&valid(cents(s.ft))?cents(s.fe)+cents(s.ft):null};
 }
 export function blanchette(cost){
   const c=cents(cost),d=divisor(c);
