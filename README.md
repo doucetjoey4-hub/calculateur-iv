@@ -40,6 +40,6 @@ Identité visuelle adaptée des styles publics de https://portail-commande.web.a
 
 La liste affichée des règles à faire valider ne contient que les points encore en attente. Les paliers, l’arrondi et la charte Blanchette ont été retirés après confirmation. La ligne d’acceptation administrative disparaît lorsque sa case de validation est cochée pour le calcul en cours.
 
-Rinçage et anticoagulant : un seul choix par groupe, pour Uniprix Blanchette, où les choix restent facultatifs. Pour Gentes et Tanguay et Autre, les sections sont masquées. Le PDF reçoit « N/A avec cette préparation » pour les deux sections après confirmation. Les champs d’approvisionnement et leurs lignes du résumé sont retirés. Les produits restent reportés dans les cases correspondantes des deux exemplaires du PDF.
+Rinçage et anticoagulant : un seul choix par groupe, pour Uniprix Blanchette, où les choix restent facultatifs. Pour Gentes et Tanguay et Autre, les sections sont masquées. Le PDF reçoit « N/A avec cette préparation » automatiquement pour les deux sections. Les champs d’approvisionnement et leurs lignes du résumé sont retirés. Les produits restent reportés dans les cases correspondantes des deux exemplaires du PDF.
 
 Les choix NaCl pharmacie préparatrice et Héparine pharmacie préparatrice activent automatiquement les calculs Blanchette correspondants. Décocher le choix ou sélectionner un autre produit du même groupe désactive le calcul associé, sans effacer son coûtant saisi. Les deux groupes restent indépendants.
