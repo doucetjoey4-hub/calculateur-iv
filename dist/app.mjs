@@ -1,4 +1,4 @@
-import {cents,valid,calculate,blanchette,money,usesRamqProfit} from './calculs.mjs?v=1.8';
+import {cents,valid,calculate,blanchette,money,usesRamqProfit} from './calculs.mjs?v=1.9';
 import {makePdf} from './pdf.mjs?v=1.9';
 const $=s=>document.querySelector(s),form=$('#form');
 const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
