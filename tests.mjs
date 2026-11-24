@@ -20,6 +20,10 @@ test('Profit Uniprix RAMQ : total Rx réel moins coûtant, frais déjà inclus',
     assert.equal(calculate({...s, rxTotal:missing}).profit, null);
     assert.equal(calculate({...s, cost:missing}).profit, null);
   }
-  for (const orderType of ['', 'magistrale', 'other']) assert.equal(calculate({...s, orderType}).profit, null);
+  for (const orderType of ['', 'magistrale']) assert.equal(calculate({...s, orderType}).profit, null);
+  assert.equal(calculate({...s, orderType:'other'}).profit, 15000);
+  assert.equal(calculate({...s, orderType:'other', rxTotal:'399,99'}).profit, -1);
+  assert.equal(calculate({...s, orderType:'other', rxTotal:''}).profit, null);
+  assert.equal(calculate({...s, orderType:'other', insurance:'private'}).profit, 21538);
   assert.equal(calculate({...s, insurance:'private'}).profit, 21538);
 });
