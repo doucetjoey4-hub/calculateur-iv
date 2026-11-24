@@ -79,7 +79,7 @@ function renderSummary(){
  if(s.insurance==='private')h+=row('NET PATIENT',money(r.net));h+=row('FE · Emballage',money(r.fe))+row('FT · Transport',money(r.ft))+row('Total Rx · papier bleu',money(r.rxTotal))+'</div>';
  h+='<div class="summary-group"><small>'+escape(pending.toUpperCase())+'</small>';
  if(s.insurance==='private')h+=row('Diviseur',r.d?(r.d/100).toFixed(2).replace('.',','):'Non déterminé')+row('Prix à facturer',money(r.price))+`<div class="summary-result">${row('Frais additionnels F6',money(r.f6))}</div>`;
- else h+=row('Prix privé / F6','N/A RAMQ');h+=row('Sous-total FE + FT',money(r.fees))+row('Profit',profitLabel(s,r.profit),usesRamqProfit(s)&&r.profit<0)+'</div>';
+ else h+=row('Frais additionnels F6','Non applicables à la RAMQ');h+=row('Sous-total FE + FT',money(r.fees))+row('Profit',profitLabel(s,r.profit),usesRamqProfit(s)&&r.profit<0)+'</div>';
  if(s.orderType==='iv')h+='<div class="summary-group"><small>PRODUITS ASSOCIÉS</small>'+row('Rinçage',s.rinse||'À préciser')+row('Anticoagulant',s.anticoag||'À préciser')+'</div>';
  for(const k of ['nacl','heparin'])if(s[k+'Enabled'])h+='<div class="summary-group">'+row('Blanchette · '+(k==='nacl'?'NaCl':'Héparine'),money(products[k].total))+row('Coût saisi',money(products[k].cost))+row('Diviseur automatique',products[k].d?(products[k].d/100).toFixed(2).replace('.',','):'Non déterminé')+row('Statut',!products[k].d?'Coûtant absent ou invalide':pending)+'</div>';
  $('#summary').innerHTML=h;summaryText='FACTURATION IV\n'+rows.map(([a,b])=>`${a} : ${b}`).join('\n')+'\nArrondi : '+'au cent le plus proche · règle confirmée'+'\nVérifications : '+checklist.map((v,i)=>`\n[${s['check'+i]?'x':' '}] ${v}`).join('');
