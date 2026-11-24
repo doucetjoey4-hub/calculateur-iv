@@ -1,4 +1,4 @@
-import {usesRamqProfit} from './calculs.mjs?v=1.8';
+import {usesRamqProfit} from './calculs.mjs?v=1.9';
 
 // Coordinates in PDF points measured on the unchanged 612 x 792 source.
 export async function makePdf(s,r,products){
