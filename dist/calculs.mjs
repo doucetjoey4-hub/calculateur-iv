@@ -13,7 +13,7 @@ export function divisor(c) {
   return null;
 }
 export function divideRound(n,d){return Math.floor((n+Math.floor(d/2))/d);}
-export const usesRamqProfit=s=>s.orderType==='iv'&&s.insurance==='ramq';
+export const usesRamqProfit=s=>(s.orderType==='iv'||s.orderType==='other')&&s.insurance==='ramq';
 export function calculate(s){
   const cost=cents(s.cost), net=cents(s.net), d=s.insurance==='private'?divisor(cost):null;
   const price=d?divideRound(cost*100,d):null;
